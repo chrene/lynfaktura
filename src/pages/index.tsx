@@ -1,63 +1,27 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-
-import Counter from '../features/counter/Counter'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import CreateInvoiceForm from '../components/create-invoice-form';
 
 const IndexPage: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div className='w-screen h-screen relative overflow-y-scroll flex flex-col bg-base-200 px-12 md:px-32 2xl:px-48'>
       <Head>
         <title>Redux Toolkit</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
-      <header className={styles.header}>
-        <img src="/logo.svg" className={styles.logo} alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className={styles.link}
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className={styles.link}
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className={styles.link}
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className={styles.link}
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
+      <header className='mt-12'>
+        <h1 className='text-2xl font-bold'>simpelfaktura.dk</h1>
       </header>
+      <main>
+        <CreateInvoiceForm />
+      </main>
+      <footer className='footer footer-center p-12 bg-base-200 text-base-content mt-auto mx-auto'>
+        <div>
+          <p>Copyright © 2022 - simpelfaktura.dk</p>
+        </div>
+      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
