@@ -1,11 +1,13 @@
-export const defaultFormValues = {
+import { InvoiceData } from '../../types/invoice-data';
+
+export const defaultFormValues: InvoiceData = {
   lateFee: false,
   addTax: true,
   lines: [
     {
       description: '',
-      quantity: '',
-      price: '',
+      quantity: null,
+      price: null,
     },
   ],
   sender: {
@@ -14,6 +16,8 @@ export const defaultFormValues = {
     zipcode: '',
     city: '',
     vat: '',
+    email: '',
+    phone: '',
   },
   receiver: {
     name: '',
@@ -23,9 +27,11 @@ export const defaultFormValues = {
     vat: '',
   },
   invoice: {
-    number: '',
-    date: '',
-    due: '',
+    number: '100',
+    date: new Date().toISOString().split('T')[0],
+    due: new Date(new Date().getTime() + 8 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split('T')[0],
     bankRegistrationNumber: '',
     bankAccountNumber: '',
   },

@@ -1,6 +1,8 @@
 // playground requires you to assign document definition to a variable called dd
 
-export const pdfDocument = {
+import { InvoiceData } from '../../../types/invoice-data';
+
+export const documentData = (data: InvoiceData) => ({
   content: [
     {
       alignment: 'right',
@@ -9,15 +11,20 @@ export const pdfDocument = {
         {
           stack: [
             {
-              stack: ['Enevoldsen.io', 'CVR 42080462'],
+              stack: [data.sender.name, `CVR ${data.sender.vat}`],
               margin: [0, 2],
             },
             {
-              stack: ['Harevænget 3', '4200 Slagelse'],
+              stack: [
+                data.sender.address,
+                `${data.sender.zipcode} ${data.sender.city}`,
+              ],
               margin: [0, 2],
             },
-
-            'c@enevoldsen.io',
+            {
+              stack: [data.sender.email, data.sender.phone].filter(Boolean),
+              margin: [0, 2],
+            },
           ],
         },
       ],
@@ -28,9 +35,9 @@ export const pdfDocument = {
         {
           width: '55%',
           stack: [
-            'YOURLOCAL ApS',
-            'Østerbrogade 50, 5. th., 2100 København Ø',
-            'CVR 35874739',
+            data.receiver.name,
+            `${data.receiver.address}, ${data.receiver.zipcode} ${data.receiver.city}`,
+            `CVR ${data.receiver.vat}`,
           ],
         },
         {
@@ -39,11 +46,18 @@ export const pdfDocument = {
           table: {
             widths: ['*', 'auto'],
             body: [
-              [{ text: 'Fakturanummer:', bold: true }, '1007'],
-              [{ text: 'Fakturadato:', bold: true }, '29/3/2022'],
-              [{ text: 'Betalingsdato:', bold: true }, '12/4/2022'],
-              [{ text: 'Konto nr.:', bold: true }, '6295149890'],
-              [{ text: 'Reg nr.:', bold: true }, '2433'],
+              [{ text: 'Fakturanummer:', bold: true }, data.invoice.number],
+              // date iso format: DD-MM-YYYY
+              [{ text: 'Fakturadato:', bold: true }, data.invoice.date],
+              [{ text: 'Betalingsdato:', bold: true }, data.invoice.due],
+              [
+                { text: 'Reg nr.:', bold: true },
+                data.invoice.bankRegistrationNumber,
+              ],
+              [
+                { text: 'Konto nr.:', bold: true },
+                data.invoice.bankAccountNumber,
+              ],
             ],
           },
         },
@@ -63,24 +77,25 @@ export const pdfDocument = {
             { text: 'Pris', bold: true, fontSize: 10 },
             { text: 'Sum', bold: true, alignment: 'right', fontSize: 10 },
           ],
-          [
-            {
-              text: 'Udført timebaseret arbejde YL-492, YL-496, YL-500',
-              style: ['smaller'],
-            },
-            { text: '5,00', style: ['smaller'] },
-            { text: 'DKK 500,00', style: ['smaller'] },
-            { text: 'DKK 2500,00', style: ['smaller', 'alignRight'] },
-          ],
-          [
-            {
-              text: 'Udført timebaseret arbejde YL-492, YL-496, YL-500',
-              style: ['smaller'],
-            },
-            { text: '5,00', style: ['smaller'] },
-            { text: 'DKK 500,00', style: ['smaller'] },
-            { text: 'DKK 2500,00', style: ['smaller', 'alignRight'] },
-          ],
+          ...data.lines.map((line) => {
+            return [
+              {
+                text: line.description,
+                style: ['smaller'],
+              },
+              { text: line.quantity, style: ['smaller'] },
+              {
+                text: `DKK ${parseFloat(line.price).toFixed(2)}`,
+                style: ['smaller'],
+              },
+              {
+                text: `DKK ${(
+                  parseFloat(line.price) * parseFloat(line.quantity)
+                ).toFixed(2)}`,
+                style: ['smaller', 'alignRight'],
+              },
+            ];
+          }),
         ],
       },
     },
@@ -95,13 +110,29 @@ export const pdfDocument = {
             {},
             {},
             { text: 'Subtotal:', bold: true },
-            { text: 'DKK 2.500,00', alignment: 'right' },
+            {
+              text: `DKK ${data.lines.reduce(
+                (acc, cur) =>
+                  parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
+                0
+              )}`,
+              alignment: 'right',
+            },
           ],
           [
             {},
             {},
             { text: 'Moms (25%):', bold: true },
-            { text: 'DKK 625,00', alignment: 'right' },
+            {
+              text: `DKK ${
+                data.lines.reduce(
+                  (acc, cur) =>
+                    parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
+                  0
+                ) * 0.25
+              }`,
+              alignment: 'right',
+            },
           ],
           [{}, {}, {}, {}],
           [
@@ -109,7 +140,13 @@ export const pdfDocument = {
             {},
             { text: 'Total:', bold: true },
             {
-              text: 'DKK 3.125,00',
+              text: `DKK ${
+                data.lines.reduce(
+                  (acc, cur) =>
+                    parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
+                  0
+                ) * 1.25
+              }`,
               alignment: 'right',
               decoration: 'underline',
             },
@@ -137,4 +174,4 @@ export const pdfDocument = {
     lineHeight: 1.1,
     fontSize: 10,
   },
-};
+});

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { getCompanyByVAT } from '../../services/cvr-api';
+import { InvoiceData } from '../../types/invoice-data';
 import Button from '../button';
 import { Divider } from '../divider/divider';
 import { FlexContainer } from '../flex-container';
@@ -21,14 +22,22 @@ export const CreateInvoiceForm = () => {
     name: 'lines',
   });
 
-  const handleDownloadInvoicePDF = () => {
-    fetch('/api/invoice', {
+  const handleDownloadInvoicePDF = async (data: InvoiceData) => {
+    // make a post request to download PDF and save as file from /api/invoices
+    const response = await fetch('/api/invoices', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
-      body: JSON.stringify(getValues()),
-    });
+      body: JSON.stringify(data),
+    }).then((res) => res.blob());
+
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(response);
+    a.download = `${data.invoice.number}`;
+    a.click();
+    a.remove();
   };
 
   const handleFetchSenderCompany = async (e: any) => {
@@ -39,9 +48,13 @@ export const CreateInvoiceForm = () => {
       sender: {
         ...getValues().sender,
         name: result.name,
-        address: result.address,
+        address: `${result.address} ${
+          result.addressco ? `c/o ${result.addressco} ` : ''
+        }`.trim(),
         zipcode: result.zipcode,
         city: result.city,
+        phone: result.phone,
+        email: result.email,
       },
     });
   };
@@ -61,8 +74,8 @@ export const CreateInvoiceForm = () => {
     });
   };
 
-  const onFormSubmit = (data) => {
-    console.log(data);
+  const onFormSubmit = async (data) => {
+    await handleDownloadInvoicePDF(data);
   };
 
   return (
@@ -117,7 +130,7 @@ export const CreateInvoiceForm = () => {
                 <Button
                   ghost
                   onClick={() =>
-                    append({ description: '', quantity: '', price: '' })
+                    append({ description: '', quantity: null, price: null })
                   }
                 >
                   Tilføj ny linje
@@ -180,6 +193,18 @@ export const CreateInvoiceForm = () => {
                     placeholder='By'
                     topLeftLabel='By'
                     register={{ ...register('sender.city') }}
+                  />
+                </FormGroup>
+                <FormGroup autoCols>
+                  <FormInput
+                    placeholder='Email'
+                    topLeftLabel='Email'
+                    register={{ ...register('sender.email') }}
+                  />
+                  <FormInput
+                    placeholder='Telefon'
+                    topLeftLabel='Telefon'
+                    register={{ ...register('sender.phone') }}
                   />
                 </FormGroup>
               </FlexContainer>
