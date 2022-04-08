@@ -1,6 +1,18 @@
 // playground requires you to assign document definition to a variable called dd
 
 import { InvoiceData } from '../../../types/invoice-data';
+const numberFormatter = new Intl.NumberFormat('da-DK', {
+  style: 'currency',
+  currency: 'DKK',
+  currencyDisplay: 'code',
+});
+
+const formatDKK = (value: number | string) => {
+  if (typeof value === 'string') {
+    return numberFormatter.format(parseFloat(value));
+  }
+  return numberFormatter.format(value);
+};
 
 export const documentData = (data: InvoiceData) => ({
   content: [
@@ -33,7 +45,7 @@ export const documentData = (data: InvoiceData) => ({
     {
       columns: [
         {
-          width: '55%',
+          width: '70%',
           stack: [
             data.receiver.name,
             `${data.receiver.address}, ${data.receiver.zipcode} ${data.receiver.city}`,
@@ -46,17 +58,29 @@ export const documentData = (data: InvoiceData) => ({
           table: {
             widths: ['*', 'auto'],
             body: [
-              [{ text: 'Fakturanummer:', bold: true }, data.invoice.number],
+              [
+                { text: 'Fakturanummer:', bold: true },
+                { text: data.invoice.number, alignment: 'right' },
+              ],
               // date iso format: DD-MM-YYYY
-              [{ text: 'Fakturadato:', bold: true }, data.invoice.date],
-              [{ text: 'Betalingsdato:', bold: true }, data.invoice.due],
+              [
+                { text: 'Fakturadato:', bold: true },
+                { text: data.invoice.date, alignment: 'right' },
+              ],
+              [
+                { text: 'Betalingsdato:', bold: true },
+                { text: data.invoice.due, alignment: 'right' },
+              ],
               [
                 { text: 'Reg nr.:', bold: true },
-                data.invoice.bankRegistrationNumber,
+                {
+                  text: data.invoice.bankRegistrationNumber,
+                  alignment: 'right',
+                },
               ],
               [
                 { text: 'Konto nr.:', bold: true },
-                data.invoice.bankAccountNumber,
+                { text: data.invoice.bankAccountNumber, alignment: 'right' },
               ],
             ],
           },
@@ -66,16 +90,42 @@ export const documentData = (data: InvoiceData) => ({
     {
       marginTop: 50,
       width: '100%',
-      layout: 'headerLineOnly', // optional
+      layout: {
+        hLineColor: '#cccccc',
+        paddingTop: function (i, node) {
+          return i === 1 ? 10 : 2;
+        },
+        paddingBottom: function (i, node) {
+          return i === node.table.body.length - 1 ? 10 : 2;
+        },
+        paddingRight: function (i, node) {
+          return 0;
+        },
+
+        paddingLeft: function (i, node) {
+          return 0;
+        },
+
+        hLineWidth: function (i, node) {
+          if (i === 1 || i === node.table.body.length) {
+            return 0.5;
+          }
+          return 0;
+        },
+        vLineWidth: function (i, node) {
+          return 0;
+        },
+      },
       table: {
+        width: '100%',
         headerRows: 1,
-        widths: ['60%', '*', '*', 'auto'],
+        widths: ['60%', '10%', '*', 'auto'],
         body: [
           [
-            { text: 'Beskrivelse', bold: true, fontSize: 10 },
-            { text: 'Antal', bold: true, fontSize: 10 },
-            { text: 'Pris', bold: true, fontSize: 10 },
-            { text: 'Sum', bold: true, alignment: 'right', fontSize: 10 },
+            { text: 'Beskrivelse', bold: true },
+            { text: 'Antal', bold: true },
+            { text: 'Pris', bold: true },
+            { text: 'Sum', bold: true, alignment: 'right' },
           ],
           ...data.lines.map((line) => {
             return [
@@ -85,13 +135,13 @@ export const documentData = (data: InvoiceData) => ({
               },
               { text: line.quantity, style: ['smaller'] },
               {
-                text: `DKK ${parseFloat(line.price).toFixed(2)}`,
+                text: formatDKK(parseFloat(line.price)),
                 style: ['smaller'],
               },
               {
-                text: `DKK ${(
+                text: formatDKK(
                   parseFloat(line.price) * parseFloat(line.quantity)
-                ).toFixed(2)}`,
+                ),
                 style: ['smaller', 'alignRight'],
               },
             ];
@@ -100,22 +150,24 @@ export const documentData = (data: InvoiceData) => ({
       },
     },
     {
-      marginTop: 20,
       width: '100%',
+      marginTop: 20,
       layout: 'headerLineOnly', // optional
       table: {
-        widths: ['60%', '*', '*', 'auto'],
+        widths: ['60%', '10%', '*', 'auto'],
         body: [
           [
             {},
             {},
             { text: 'Subtotal:', bold: true },
             {
-              text: `DKK ${data.lines.reduce(
-                (acc, cur) =>
-                  parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
-                0
-              )}`,
+              text: formatDKK(
+                data.lines.reduce(
+                  (acc, cur) =>
+                    parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
+                  0
+                )
+              ),
               alignment: 'right',
             },
           ],
@@ -124,13 +176,13 @@ export const documentData = (data: InvoiceData) => ({
             {},
             { text: 'Moms (25%):', bold: true },
             {
-              text: `DKK ${
+              text: formatDKK(
                 data.lines.reduce(
                   (acc, cur) =>
                     parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
                   0
                 ) * 0.25
-              }`,
+              ),
               alignment: 'right',
             },
           ],
@@ -140,13 +192,13 @@ export const documentData = (data: InvoiceData) => ({
             {},
             { text: 'Total:', bold: true },
             {
-              text: `DKK ${
+              text: formatDKK(
                 data.lines.reduce(
                   (acc, cur) =>
                     parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
                   0
                 ) * 1.25
-              }`,
+              ),
               alignment: 'right',
               decoration: 'underline',
             },
@@ -157,9 +209,10 @@ export const documentData = (data: InvoiceData) => ({
   ],
   styles: {
     header: {
-      fontSize: 28,
+      paddingLeft: 0,
+      fontSize: 32,
       bold: true,
-      margin: [0, 50],
+      margin: [-3, 50, 0, 50],
     },
     bigger: {
       fontSize: 15,
@@ -170,8 +223,9 @@ export const documentData = (data: InvoiceData) => ({
     },
   },
   defaultStyle: {
-    columnGap: 30,
+    font: 'Montserrat',
+    columnGap: 0,
     lineHeight: 1.1,
-    fontSize: 10,
+    fontSize: 9,
   },
 });

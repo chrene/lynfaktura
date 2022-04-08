@@ -10,6 +10,12 @@ function createPdfBinary(pdfDoc): Promise<Buffer> {
       italics: 'public/fonts/Roboto-Italic.ttf',
       bolditalics: 'public/fonts/Roboto-MediumItalic.ttf',
     },
+    Montserrat: {
+      normal: 'public/fonts/Montserrat-Regular.ttf',
+      bold: 'public/fonts/Montserrat-Bold.ttf',
+      italics: 'public/fonts/Montserrat-Italic.ttf',
+      bolditalics: 'public/fonts/Montserrat-MediumItalic.ttf',
+    },
   };
   const printer = new PdfPrinter(fontDescriptors);
   const doc = printer.createPdfKitDocument(pdfDoc);
