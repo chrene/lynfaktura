@@ -6,8 +6,8 @@ export const defaultFormValues: InvoiceData = {
   lines: [
     {
       description: '',
-      quantity: null,
-      price: null,
+      quantity: 1,
+      price: 0,
     },
   ],
   sender: {

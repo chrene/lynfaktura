@@ -1,3 +1,5 @@
+import { ErrorMessage } from '@hookform/error-message';
+import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -11,11 +13,24 @@ import FormInputCheckbox from '../form-input-checkbox';
 import { CloseIcon, DownloadIcon } from '../icon';
 import { defaultFormValues } from './default-form-values';
 import { FormGroup } from './form-group';
+import { validationSchema } from './form-validation';
 import { InvoiceSection } from './invoice-section';
 
 export const CreateInvoiceForm = () => {
-  const { control, register, getValues, reset, handleSubmit } = useForm({
+  const resolver = yupResolver(validationSchema);
+
+  const {
+    control,
+    register,
+    getValues,
+    reset,
+    handleSubmit,
+    trigger,
+    formState: { errors },
+  } = useForm({
     defaultValues: defaultFormValues,
+    resolver,
+    mode: 'onBlur',
   });
   const { fields, append, remove } = useFieldArray({
     control,
@@ -86,42 +101,54 @@ export const CreateInvoiceForm = () => {
             <InvoiceSection title='Fakturalinjer'>
               <ul className='gap-4 flex flex-col'>
                 {fields.length > 0 ? (
-                  fields.map((item, index) => (
-                    <li
-                      className='grid grid-cols-12 p-8 mb-4 xl:mb-0 xl:p-0 gap-8 xl:gap-8 border xl:border-none'
-                      key={item.id}
-                    >
-                      <FormInput
-                        className='col-span-7'
-                        topLeftLabel='Beskrivelse'
-                        register={{ ...register(`lines.${index}.description`) }}
-                      />
-                      <FormInput
-                        className='col-span-2'
-                        type='number'
-                        topLeftLabel='Antal'
-                        register={{ ...register(`lines.${index}.quantity`) }}
-                      />
-                      <FormInput
-                        className='col-span-2'
-                        type='number'
-                        topLeftLabel='Enhedspris'
-                        register={{ ...register(`lines.${index}.price`) }}
-                      />
-
-                      <button
-                        className={classNames(
-                          `btn btn-circle btn-error btn-link btn-xs set-fill text-neutral self-center mt-10 col-span-12 xl:col-span-1`,
-                          {
-                            hidden: index === 0,
-                          }
-                        )}
-                        onClick={() => remove(index)}
+                  fields.map((item, index) => {
+                    return (
+                      <li
+                        className='grid grid-cols-12 p-8 mb-4 xl:mb-0 xl:p-0 gap-8 xl:gap-8 border xl:border-none'
+                        key={item.id}
                       >
-                        <CloseIcon />
-                      </button>
-                    </li>
-                  ))
+                        <FormInput
+                          className='col-span-5 lg:col-span-7'
+                          type='text'
+                          topLeftLabel='Beskrivelse'
+                          errors={errors}
+                          register={{
+                            ...register(`lines.${index}.description`),
+                          }}
+                        />
+                        <FormInput
+                          className='col-span-3 lg:col-span-2'
+                          type='number'
+                          topLeftLabel='Antal'
+                          errors={errors}
+                          register={{
+                            ...register(`lines.${index}.quantity`),
+                          }}
+                        />
+                        <FormInput
+                          className='col-span-3 lg:col-span-2'
+                          type='number'
+                          topLeftLabel='Enhedspris'
+                          errors={errors}
+                          register={{
+                            ...register(`lines.${index}.price`),
+                          }}
+                        />
+
+                        <button
+                          className={classNames(
+                            `btn btn-circle btn-error btn-link btn-xs set-fill text-neutral self-center mt-10 col-span-12 xl:col-span-1`,
+                            {
+                              hidden: index === 0,
+                            }
+                          )}
+                          onClick={() => remove(index)}
+                        >
+                          <CloseIcon />
+                        </button>
+                      </li>
+                    );
+                  })
                 ) : (
                   <div className='text-center'>Ingen fakturalinjer</div>
                 )}
@@ -146,7 +173,13 @@ export const CreateInvoiceForm = () => {
                     className='col-span-6'
                     placeholder='CVR'
                     topLeftLabel='CVR'
-                    register={{ ...register('sender.vat') }}
+                    errors={errors}
+                    register={{
+                      ...register('sender.vat', {
+                        required: true,
+                        minLength: 8,
+                      }),
+                    }}
                   />
                   <button
                     className='btn btn-primary gap-2 self-end col-span-3'
@@ -175,11 +208,13 @@ export const CreateInvoiceForm = () => {
                   <FormInput
                     placeholder='Navn'
                     topLeftLabel='Navn'
+                    errors={errors}
                     register={{ ...register('sender.name') }}
                   />
                   <FormInput
                     placeholder='Adresse'
                     topLeftLabel='Adresse'
+                    errors={errors}
                     register={{ ...register('sender.address') }}
                   />
                 </FormGroup>
@@ -187,11 +222,13 @@ export const CreateInvoiceForm = () => {
                   <FormInput
                     placeholder='Postnummer'
                     topLeftLabel='Postnummer'
+                    errors={errors}
                     register={{ ...register('sender.zipcode') }}
                   />
                   <FormInput
                     placeholder='By'
                     topLeftLabel='By'
+                    errors={errors}
                     register={{ ...register('sender.city') }}
                   />
                 </FormGroup>
@@ -199,12 +236,18 @@ export const CreateInvoiceForm = () => {
                   <FormInput
                     placeholder='Email'
                     topLeftLabel='Email'
+                    errors={errors}
                     register={{ ...register('sender.email') }}
                   />
                   <FormInput
                     placeholder='Telefon'
                     topLeftLabel='Telefon'
-                    register={{ ...register('sender.phone') }}
+                    errors={errors}
+                    register={{
+                      ...register('sender.phone', {
+                        required: false,
+                      }),
+                    }}
                   />
                 </FormGroup>
               </FlexContainer>
@@ -217,6 +260,7 @@ export const CreateInvoiceForm = () => {
                   className='col-span-6'
                   placeholder='CVR'
                   topLeftLabel='CVR'
+                  errors={errors}
                   register={{ ...register('receiver.vat') }}
                 />
                 <button
@@ -245,11 +289,13 @@ export const CreateInvoiceForm = () => {
                   <FormInput
                     placeholder='Navn'
                     topLeftLabel='Navn'
+                    errors={errors}
                     register={{ ...register('receiver.name') }}
                   />
                   <FormInput
                     placeholder='Adresse'
                     topLeftLabel='Adresse'
+                    errors={errors}
                     register={{ ...register('receiver.address') }}
                   />
                 </FormGroup>
@@ -257,11 +303,13 @@ export const CreateInvoiceForm = () => {
                   <FormInput
                     placeholder='Postnummer'
                     topLeftLabel='Postnummer'
+                    errors={errors}
                     register={{ ...register('receiver.zipcode') }}
                   />
                   <FormInput
                     placeholder='By'
                     topLeftLabel='By'
+                    errors={errors}
                     register={{ ...register('receiver.city') }}
                   />
                 </FormGroup>
@@ -274,18 +322,21 @@ export const CreateInvoiceForm = () => {
                 <FormInput
                   placeholder='Fakturanummer'
                   topLeftLabel='Fakturanummer'
+                  errors={errors}
                   register={{ ...register('invoice.number') }}
                 />
                 <FormInput
                   type='date'
                   placeholder='Fakturadato'
                   topLeftLabel='Fakturadato'
+                  errors={errors}
                   register={{ ...register('invoice.date') }}
                 />
                 <FormInput
                   type='date'
                   placeholder='Betalingsdato'
                   topLeftLabel='Betalingsdato'
+                  errors={errors}
                   register={{ ...register('invoice.due') }}
                 />
               </FormGroup>
@@ -294,12 +345,14 @@ export const CreateInvoiceForm = () => {
                   className='col-span-2'
                   placeholder='1234'
                   topLeftLabel='Bank registreringsnummer'
+                  errors={errors}
                   register={{ ...register('invoice.bankRegistrationNumber') }}
                 />
                 <FormInput
                   className='col-span-8'
                   placeholder='12345678'
                   topLeftLabel='Bank kontonummer'
+                  errors={errors}
                   register={{ ...register('invoice.bankAccountNumber') }}
                 />
               </FormGroup>

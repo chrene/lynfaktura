@@ -1,5 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
+import { ErrorMessage } from '@hookform/error-message';
+
+const getValue = (object, keys) =>
+  keys.split('.').reduce((o, k) => (o || {})[k], object);
 
 export const FormInput = (props: {
   placeholder?: string;
@@ -7,9 +11,18 @@ export const FormInput = (props: {
   type?: string;
   register?: any;
   className?: string;
+  errors?: any;
+  onChange?: any;
 }) => {
-  const { placeholder, className, type, topLeftLabel, register, ...rest } =
-    props;
+  const {
+    placeholder,
+    className,
+    type,
+    topLeftLabel,
+    register,
+    errors = {},
+    ...rest
+  } = props;
   return (
     <div className={classNames('form-control', className)}>
       <label className='label'>
@@ -18,9 +31,16 @@ export const FormInput = (props: {
       <input
         type={type || 'text'}
         placeholder={placeholder}
-        className='input input-bordered input'
+        className={classNames('input input-bordered', className)}
         {...register}
         {...rest}
+      />
+      <ErrorMessage
+        errors={errors}
+        name={register.name}
+        render={(props) => {
+          return <span className='text-error mt-2'>{props.message}</span>;
+        }}
       />
     </div>
   );

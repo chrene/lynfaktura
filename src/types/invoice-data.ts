@@ -1,7 +1,7 @@
 interface InvoiceLine {
   description: string;
-  quantity: string;
-  price: string;
+  quantity: number;
+  price: number;
 }
 
 export interface InvoiceData {
