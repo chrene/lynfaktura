@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang='da' data-theme='light'>
+      <Html lang='da' data-theme='default'>
         <Head />
         <body>
           <Main />
