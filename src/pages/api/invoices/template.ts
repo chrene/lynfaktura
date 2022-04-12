@@ -1,6 +1,6 @@
 // playground requires you to assign document definition to a variable called dd
 
-import { InvoiceData } from '../../../types/invoice-data';
+import { InvoiceData } from '../../../../types/invoice-data';
 const numberFormatter = new Intl.NumberFormat('da-DK', {
   style: 'currency',
   currency: 'DKK',
@@ -135,13 +135,11 @@ export const documentData = (data: InvoiceData) => ({
               },
               { text: line.quantity, style: ['smaller'] },
               {
-                text: formatDKK(parseFloat(line.price)),
+                text: formatDKK(line.price),
                 style: ['smaller'],
               },
               {
-                text: formatDKK(
-                  parseFloat(line.price) * parseFloat(line.quantity)
-                ),
+                text: formatDKK(line.price * line.quantity),
                 style: ['smaller', 'alignRight'],
               },
             ];
@@ -163,8 +161,7 @@ export const documentData = (data: InvoiceData) => ({
             {
               text: formatDKK(
                 data.lines.reduce(
-                  (acc, cur) =>
-                    parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
+                  (acc, cur) => cur.price * cur.quantity + acc,
                   0
                 )
               ),
@@ -174,15 +171,16 @@ export const documentData = (data: InvoiceData) => ({
           [
             {},
             {},
-            { text: 'Moms (25%):', bold: true },
+            { text: data.addTax ? 'Moms (25%):' : '', bold: true },
             {
-              text: formatDKK(
-                data.lines.reduce(
-                  (acc, cur) =>
-                    parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
-                  0
-                ) * 0.25
-              ),
+              text: data.addTax
+                ? formatDKK(
+                    data.lines.reduce(
+                      (acc, cur) => cur.price * cur.quantity + acc,
+                      0
+                    ) * 0.25
+                  )
+                : '',
               alignment: 'right',
             },
           ],
@@ -194,10 +192,9 @@ export const documentData = (data: InvoiceData) => ({
             {
               text: formatDKK(
                 data.lines.reduce(
-                  (acc, cur) =>
-                    parseFloat(cur.price) * parseFloat(cur.quantity) + acc,
+                  (acc, cur) => cur.price * cur.quantity + acc,
                   0
-                ) * 1.25
+                ) * (data.addTax ? 1.25 : 1)
               ),
               alignment: 'right',
               decoration: 'underline',
@@ -206,6 +203,12 @@ export const documentData = (data: InvoiceData) => ({
         ],
       },
     },
+    data.lateFee
+      ? {
+          marginTop: 50,
+          text: 'Ved for sen betaling pålægges rykkergebyr på kr. 100.\nDer tilskrives endvidere renter på 2% pr. påbegyndt måned.',
+        }
+      : {},
   ],
   styles: {
     header: {

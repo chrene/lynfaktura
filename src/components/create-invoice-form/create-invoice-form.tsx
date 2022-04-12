@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { getCompanyByVAT } from '../../services/cvr-api';
-import { InvoiceData } from '../../types/invoice-data';
+import { InvoiceData } from '../../../types/invoice-data';
 import Button from '../button';
 import { Divider } from '../divider/divider';
 import { FlexContainer } from '../flex-container';
@@ -15,10 +15,14 @@ import { defaultFormValues } from './default-form-values';
 import { FormGroup } from './form-group';
 import { validationSchema } from './form-validation';
 import { InvoiceSection } from './invoice-section';
+import { dxFactory } from '../../services/dx-factory';
 
-export const CreateInvoiceForm = () => {
+interface CreateInvoiceFormProps {
+  dx?: { enabled: boolean };
+}
+
+export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
   const resolver = yupResolver(validationSchema);
-
   const {
     control,
     register,
@@ -95,6 +99,18 @@ export const CreateInvoiceForm = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
+      {dx?.enabled && (
+        <button
+          className='btn btn-primary btn-outline btn-sm fixed bottom-4 right-4'
+          onClick={() => {
+            const data = dxFactory.invoice.create();
+            reset(data);
+          }}
+        >
+          Udfyld test data
+        </button>
+      )}
+
       <div className='grid grid-cols-12 gap-16 mx-auto mt-16 relative'>
         <div className='col-span-8 bg-base-100 rounded-xl p-12'>
           <FlexContainer dividers>

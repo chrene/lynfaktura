@@ -13,7 +13,7 @@ const IndexPage: NextPage = () => {
         <h1 className='text-2xl font-bold'>simpelfaktura.dk</h1>
       </header>
       <main>
-        <CreateInvoiceForm />
+        <CreateInvoiceForm dx={{ enabled: process.env.dxEnabled === 'true' }} />
       </main>
       <footer className='footer footer-center p-12 bg-base-200 text-base-content mt-auto mx-auto'>
         <div>

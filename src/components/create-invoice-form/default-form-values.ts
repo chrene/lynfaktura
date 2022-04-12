@@ -1,4 +1,4 @@
-import { InvoiceData } from '../../types/invoice-data';
+import { InvoiceData } from '../../../types/invoice-data';
 
 export const defaultFormValues: InvoiceData = {
   lateFee: false,
