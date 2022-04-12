@@ -30,7 +30,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
     reset,
     watch,
     handleSubmit,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors },
   } = useForm({
     defaultValues: defaultFormValues,
     resolver,
@@ -271,10 +271,6 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
 
             {/* Receiver */}
             <InvoiceSection title='Modtager'>
-              <FormInputCheckbox
-                label='Modtager er en virksomhed'
-                register={{ ...register('receiver.isCompany') }}
-              />
               {watchIsCompany ? (
                 <FormGroup cols>
                   <FormInput
@@ -384,11 +380,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
 
         <div className='col-span-4'>
           <div className='flex flex-col gap-4 sticky top-16'>
-            <Button
-              primary
-              onClick={handleSubmit(onFormSubmit)}
-              disabled={!isValid || isSubmitting}
-            >
+            <Button primary onClick={handleSubmit(onFormSubmit)}>
               <DownloadIcon />
               Hent faktura
             </Button>
@@ -401,6 +393,11 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
             <FormInputCheckbox
               label='Tilføj moms'
               register={{ ...register('addTax') }}
+            />
+
+            <FormInputCheckbox
+              label='Modtager er en virksomhed'
+              register={{ ...register('receiver.isCompany') }}
             />
           </div>
         </div>

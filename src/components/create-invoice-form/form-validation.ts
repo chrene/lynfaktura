@@ -5,10 +5,15 @@ const invoiceLinesSchema = yup.array().of(
     description: yup.string().max(50, 'Max 50 tegn').required('Påkrævet'),
     quantity: yup
       .number()
+      .typeError('Skal være et heltal')
       .integer('Skal være et heltal')
-      .min(1, 'Minimum 1')
+      .min(1, 'Skal minimum være 1')
       .required('Påkrævet'),
-    price: yup.number().min(1, 'Minimum 1').required('Påkrævet'),
+    price: yup
+      .number()
+      .typeError('Skal være et heltal')
+      .min(1, 'Skal minimum være 1')
+      .required('Påkrævet'),
   })
 );
 
