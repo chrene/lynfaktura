@@ -383,10 +383,6 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
               Hent faktura
             </Button>
 
-            <Button primary outline>
-              Forhåndsvisning
-            </Button>
-
             <Divider />
             <FormInputCheckbox
               label='Sen betalingsgebyr'

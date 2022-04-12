@@ -1,11 +1,20 @@
-// playground requires you to assign document definition to a variable called dd
-
 import { InvoiceData } from '../../../../types/invoice-data';
 const numberFormatter = new Intl.NumberFormat('da-DK', {
   style: 'currency',
   currency: 'DKK',
   currencyDisplay: 'code',
 });
+
+const dateFormatter = new Intl.DateTimeFormat('da-DK', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+const formatDate = (value: string) => {
+  const date = new Date(value);
+  return dateFormatter.format(date);
+};
 
 const formatDKK = (value: number | string) => {
   if (typeof value === 'string') {
@@ -65,11 +74,11 @@ export const documentData = (data: InvoiceData) => ({
               // date iso format: DD-MM-YYYY
               [
                 { text: 'Fakturadato:', bold: true },
-                { text: data.invoice.date, alignment: 'right' },
+                { text: formatDate(data.invoice.date), alignment: 'right' },
               ],
               [
                 { text: 'Betalingsdato:', bold: true },
-                { text: data.invoice.due, alignment: 'right' },
+                { text: formatDate(data.invoice.due), alignment: 'right' },
               ],
               [
                 { text: 'Reg nr.:', bold: true },

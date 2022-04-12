@@ -27,7 +27,7 @@ export const defaultFormValues: InvoiceData = {
     vat: '',
   },
   invoice: {
-    number: '100',
+    number: '',
     date: new Date().toISOString().split('T')[0],
     due: new Date(new Date().getTime() + 8 * 24 * 60 * 60 * 1000)
       .toISOString()
