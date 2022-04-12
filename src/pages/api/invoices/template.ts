@@ -58,7 +58,7 @@ export const documentData = (data: InvoiceData) => ({
           stack: [
             data.receiver.name,
             `${data.receiver.address}, ${data.receiver.zipcode} ${data.receiver.city}`,
-            `CVR ${data.receiver.vat}`,
+            data.receiver.isCompany ? `CVR ${data.receiver.vat}` : '',
           ],
         },
         {

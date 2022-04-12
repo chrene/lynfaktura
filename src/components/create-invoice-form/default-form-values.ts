@@ -20,6 +20,7 @@ export const defaultFormValues: InvoiceData = {
     phone: '',
   },
   receiver: {
+    isCompany: true,
     name: '',
     address: '',
     zipcode: '',

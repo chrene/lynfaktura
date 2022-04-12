@@ -28,9 +28,9 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
     register,
     getValues,
     reset,
+    watch,
     handleSubmit,
-    trigger,
-    formState: { errors },
+    formState: { errors, isValid, isSubmitting },
   } = useForm({
     defaultValues: defaultFormValues,
     resolver,
@@ -40,7 +40,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
     control,
     name: 'lines',
   });
-
+  const watchIsCompany = watch('receiver.isCompany');
   const handleDownloadInvoicePDF = async (data: InvoiceData) => {
     // make a post request to download PDF and save as file from /api/invoices
     const response = await fetch('/api/invoices', {
@@ -271,35 +271,41 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
 
             {/* Receiver */}
             <InvoiceSection title='Modtager'>
-              <FormGroup cols>
-                <FormInput
-                  className='col-span-6'
-                  placeholder='CVR'
-                  topLeftLabel='CVR'
-                  errors={errors}
-                  register={{ ...register('receiver.vat') }}
-                />
-                <button
-                  className='btn btn-primary gap-2 col-span-3 self-end'
-                  onClick={(e) => handleFetchReceiverCompany(e)}
-                >
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    className='h-5 w-5'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke='currentColor'
-                    strokeWidth={2}
+              <FormInputCheckbox
+                label='Modtager er en virksomhed'
+                register={{ ...register('receiver.isCompany') }}
+              />
+              {watchIsCompany ? (
+                <FormGroup cols>
+                  <FormInput
+                    className='col-span-6'
+                    placeholder='CVR'
+                    topLeftLabel='CVR'
+                    errors={errors}
+                    register={{ ...register('receiver.vat') }}
+                  />
+                  <button
+                    className='btn btn-primary gap-2 col-span-3 self-end'
+                    onClick={(e) => handleFetchReceiverCompany(e)}
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'
-                    />
-                  </svg>
-                  Hent data
-                </button>
-              </FormGroup>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='h-5 w-5'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'
+                      />
+                    </svg>
+                    Hent data
+                  </button>
+                </FormGroup>
+              ) : null}
               <FlexContainer>
                 <FormGroup autoCols>
                   <FormInput
@@ -378,7 +384,11 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
 
         <div className='col-span-4'>
           <div className='flex flex-col gap-4 sticky top-16'>
-            <Button primary onClick={handleSubmit(onFormSubmit)}>
+            <Button
+              primary
+              onClick={handleSubmit(onFormSubmit)}
+              disabled={!isValid || isSubmitting}
+            >
               <DownloadIcon />
               Hent faktura
             </Button>

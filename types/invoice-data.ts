@@ -18,11 +18,12 @@ export interface InvoiceData {
     phone: string;
   };
   receiver: {
+    isCompany: boolean;
     name: string;
     address: string;
     zipcode: string;
     city: string;
-    vat: string;
+    vat?: string;
   };
   invoice: {
     number: string;

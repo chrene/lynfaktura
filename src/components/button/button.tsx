@@ -6,8 +6,9 @@ export const Button = (props: {
   primary?: boolean;
   outline?: boolean;
   ghost?: boolean;
+  disabled?: boolean;
 }) => {
-  const { children, onClick, primary, outline, ghost } = props;
+  const { children, onClick, primary, outline, ghost, ...rest } = props;
 
   const classes = classNames('btn', {
     'btn-primary': primary,
@@ -17,7 +18,7 @@ export const Button = (props: {
   });
 
   return (
-    <button className={classes} onClick={onClick}>
+    <button className={classes} onClick={onClick} {...rest}>
       {children}
     </button>
   );
