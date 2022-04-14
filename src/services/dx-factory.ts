@@ -35,6 +35,7 @@ export const dxFactory = {
           zipcode: data?.receiver.zipcode || faker.address.zipCode('####'),
           city: data?.receiver.city || faker.address.city(),
           vat: data?.receiver.vat || faker.finance.account(8),
+          isCompany: true,
         },
         sender: {
           ...data?.sender,

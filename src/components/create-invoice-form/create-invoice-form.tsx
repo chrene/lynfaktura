@@ -382,7 +382,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
           <div className='flex flex-col gap-4 sticky top-16'>
             <Button primary onClick={handleSubmit(onFormSubmit)}>
               <DownloadIcon />
-              Hent faktura
+              Download PDF
             </Button>
 
             <Divider />
