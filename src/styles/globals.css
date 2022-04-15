@@ -17,6 +17,11 @@ input[type='number']::-webkit-outer-spin-button {
   text-transform: unset;
 }
 
+.divider:before,
+.divider:after {
+  height: 1px;
+}
+
 @font-face {
   font-family: 'Montserrat';
   src: url('/fonts/Montserrat-SemiBoldItalic.woff2') format('woff2'),
