@@ -10,37 +10,34 @@ function createPdfBinary(pdfDoc): Promise<Buffer> {
     Roboto: {
       normal: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Roboto-Regular.ttf'
+        './fonts/Roboto-Regular.ttf'
       ),
-      bold: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Roboto-Bold.ttf'
-      ),
+      bold: join(serverRuntimeConfig.PROJECT_ROOT, './fonts/Roboto-Bold.ttf'),
       italics: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Roboto-Italic.ttf'
+        './fonts/Roboto-Italic.ttf'
       ),
       bolditalics: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Roboto-MediumItalic.ttf'
+        './fonts/Roboto-MediumItalic.ttf'
       ),
     },
     Montserrat: {
       normal: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Montserrat-Regular.ttf'
+        './fonts/Montserrat-Regular.ttf'
       ),
       bold: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Montserrat-Bold.ttf'
+        './fonts/Montserrat-Bold.ttf'
       ),
       italics: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Montserrat-Italic.ttf'
+        './fonts/Montserrat-Italic.ttf'
       ),
       bolditalics: join(
         serverRuntimeConfig.PROJECT_ROOT,
-        './public/fonts/Montserrat-MediumItalic.ttf'
+        './fonts/Montserrat-MediumItalic.ttf'
       ),
     },
   };
