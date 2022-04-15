@@ -1,4 +1,3 @@
-import getConfig from 'next/config';
 import { join } from 'path';
 import PdfPrinter from 'pdfmake';
 import { documentData } from './template';
