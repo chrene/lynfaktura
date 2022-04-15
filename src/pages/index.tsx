@@ -10,14 +10,14 @@ const IndexPage: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <header className='mt-12'>
-        <h1 className='text-2xl font-bold'>simpelfaktura.dk</h1>
+        <h1 className='text-2xl font-bold'>lynfaktura.dk</h1>
       </header>
       <main>
         <CreateInvoiceForm dx={{ enabled: process.env.dxEnabled === 'true' }} />
       </main>
       <footer className='footer footer-center p-12 bg-base-200 text-base-content mt-auto mx-auto'>
         <div>
-          <p>Copyright © 2022 - simpelfaktura.dk</p>
+          <p>Copyright © 2022 - lynfaktura.dk</p>
         </div>
       </footer>
     </div>
