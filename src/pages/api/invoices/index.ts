@@ -1,20 +1,47 @@
-import { documentData } from './template';
-import PdfPrinter from 'pdfmake';
+import getConfig from 'next/config';
 import { join } from 'path';
+import PdfPrinter from 'pdfmake';
+import { documentData } from './template';
+
+const { serverRuntimeConfig } = getConfig();
 
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
     Roboto: {
-      normal: '../../../fonts/Roboto-Regular.ttf',
-      bold: '../../../fonts/Roboto-Bold.ttf',
-      italics: '../../../fonts/Roboto-Italic.ttf',
-      bolditalics: '../../../fonts/Roboto-MediumItalic.ttf',
+      normal: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Roboto-Regular.ttf'
+      ),
+      bold: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Roboto-Bold.ttf'
+      ),
+      italics: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Roboto-Italic.ttf'
+      ),
+      bolditalics: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Roboto-MediumItalic.ttf'
+      ),
     },
     Montserrat: {
-      normal: '../../../fonts/Montserrat-Regular.ttf',
-      bold: '../../../fonts/Montserrat-Bold.ttf',
-      italics: '../../../fonts/Montserrat-Italic.ttf',
-      bolditalics: '../../../fonts/Montserrat-MediumItalic.ttf',
+      normal: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Montserrat-Regular.ttf'
+      ),
+      bold: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Montserrat-Bold.ttf'
+      ),
+      italics: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Montserrat-Italic.ttf'
+      ),
+      bolditalics: join(
+        serverRuntimeConfig.PROJECT_ROOT,
+        './public/fonts/Montserrat-MediumItalic.ttf'
+      ),
     },
   };
   const printer = new PdfPrinter(fontDescriptors);

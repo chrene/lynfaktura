@@ -1,12 +1,8 @@
-
-const withFonts = require('next-fonts');
-
-module.exports = withFonts({
-   enableSvg: true,
-   webpack(config, options) {
-     return config;
-   },
-   env: {
+module.exports = {
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname
+  },
+  env: {
     dxEnabled: process.env.DX_ENABLED
   },
-}); 
+}
