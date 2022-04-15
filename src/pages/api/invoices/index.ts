@@ -2,20 +2,15 @@ import { join } from 'path';
 import PdfPrinter from 'pdfmake';
 import { documentData } from './template';
 
-let basePath = process.cwd();
-if (process.env.NODE_ENV === 'production')
-  basePath = join(process.cwd(), '.next/server/chunks');
-
+const basePath =
+  process.env.NODE_ENV === 'production' ? 'https://lynfaktura.dk/' : './';
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
     Montserrat: {
-      normal:
-        'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-Regular.ttf',
-      bold: 'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-Bold.ttf',
-      italics:
-        'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-Italic.ttf',
-      bolditalics:
-        'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-MediumItalic.ttf',
+      normal: join(basePath, 'fonts/Montserrat-Regular.ttf'),
+      bold: join(basePath, 'fonts/Montserrat-Bold.ttf'),
+      italics: join(basePath, 'fonts/Montserrat-Italic.ttf'),
+      bolditalics: join(basePath, 'fonts/Montserrat-MediumItalic.ttf'),
     },
   };
   const printer = new PdfPrinter(fontDescriptors);
