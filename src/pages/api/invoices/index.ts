@@ -1,5 +1,5 @@
 import PdfPrinter from 'pdfmake';
-import { documentData } from './_template';
+import { documentData } from './template';
 
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
