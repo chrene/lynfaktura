@@ -2,7 +2,14 @@ module.exports = {
   mode: 'jit',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+
+    },
+    fontFamily: {
+      'sans': ['Montserrat', 'system-ui'],
+      'serif': ['ui-serif', 'Georgia'],
+      'mono': ['ui-monospace', 'SFMono-Regular'],
+    }
   },
   plugins: [require('daisyui')],
   daisyui: {

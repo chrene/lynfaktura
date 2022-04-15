@@ -2,9 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { ErrorMessage } from '@hookform/error-message';
 
-const getValue = (object, keys) =>
-  keys.split('.').reduce((o, k) => (o || {})[k], object);
-
 export const FormInput = (props: {
   placeholder?: string;
   topLeftLabel?: string;
@@ -31,7 +28,7 @@ export const FormInput = (props: {
       <input
         type={type || 'text'}
         placeholder={placeholder}
-        className={classNames('input input-bordered', className)}
+        className={classNames('input input-bordered input-sm', className)}
         {...register}
         {...rest}
       />

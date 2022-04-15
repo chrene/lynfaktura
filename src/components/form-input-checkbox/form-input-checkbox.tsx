@@ -10,8 +10,8 @@ export const FormInputCheckbox = (props: {
   const { onChange, label, register, className } = props;
   return (
     <div className={classNames('form-control', className)}>
-      <label className='label cursor-pointer'>
-        <span className='font-bold label-text'>{label}</span>
+      <label className='label cursor-pointer px-0 py-1 whitespace-nowrap gap-8'>
+        <span className='font-semibold label-text'>{label}</span>
         <input
           type='checkbox'
           className='toggle toggle-primary'

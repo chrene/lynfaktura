@@ -4,7 +4,7 @@ import CreateInvoiceForm from '../components/create-invoice-form';
 
 const IndexPage: NextPage = () => {
   return (
-    <div className='w-screen h-screen relative overflow-y-scroll flex flex-col bg-base-200 px-12 md:px-32 2xl:px-48'>
+    <div className='w-screen h-screen relative overflow-y-scroll flex flex-col bg-base-200 px-12 md:px-32 2xl:px-80'>
       <Head>
         <title>Redux Toolkit</title>
         <link rel='icon' href='/favicon.ico' />

@@ -8,7 +8,7 @@ export const FlexContainer = (props: {
 }) => {
   const { children, dividers, ...rest } = props;
   return (
-    <div className='flex flex-col gap-8' {...rest}>
+    <div className='flex flex-col gap-4' {...rest}>
       {dividers
         ? children.map((child: React.ReactChild, index: React.Key) => {
             return (
