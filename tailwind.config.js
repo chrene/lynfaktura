@@ -16,18 +16,19 @@ module.exports = {
     themes: [
       {
         default: {
-          primary: '#3E87D7',
+          primary: '#004F77',
           'primary-content': '#FFFFFF',
           secondary: '#F000B8',
-          accent: '#37CDBE',
+          accent: '#3E87D7',
           neutral: '#3D4451',
           'neutral-content': '#ffffff',
           'base-100': '#FFFFFF',
           'base-200': '#F0F3F5',
+          'base-content': '#354A54',
           info: '#3ABFF8',
-          success: '#36D399',
+          success: '#2FAB69',
           warning: '#FBBD23',
-          error: '#F87272',
+          error: '#F4697F',
         },
       },
     ],

@@ -14,7 +14,7 @@ export const FormInputCheckbox = (props: {
         <span className='font-semibold label-text'>{label}</span>
         <input
           type='checkbox'
-          className='toggle toggle-primary'
+          className='toggle toggle-accent'
           onChange={onChange}
           {...register}
         />
