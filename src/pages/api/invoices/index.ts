@@ -8,17 +8,14 @@ if (process.env.NODE_ENV === 'production')
 
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
-    Roboto: {
-      normal: join(basePath, './fonts/Roboto-Regular.ttf'),
-      bold: join(basePath, './fonts/Roboto-Bold.ttf'),
-      italics: join(basePath, './fonts/Roboto-Italic.ttf'),
-      bolditalics: join(basePath, './fonts/Roboto-MediumItalic.ttf'),
-    },
     Montserrat: {
-      normal: join(basePath, './fonts/Montserrat-Regular.ttf'),
-      bold: join(basePath, './fonts/Montserrat-Bold.ttf'),
-      italics: join(basePath, './fonts/Montserrat-Italic.ttf'),
-      bolditalics: join(basePath, './fonts/Montserrat-MediumItalic.ttf'),
+      normal:
+        'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-Regular.ttf',
+      bold: 'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-Bold.ttf',
+      italics:
+        'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-Italic.ttf',
+      bolditalics:
+        'https://cdn.jsdelivr.net/npm/@typopro/web-montserrat@3.7.5/TypoPRO-Montserrat-MediumItalic.ttf',
     },
   };
   const printer = new PdfPrinter(fontDescriptors);
