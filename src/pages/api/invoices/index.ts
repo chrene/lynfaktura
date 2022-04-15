@@ -1,13 +1,17 @@
+import path from 'path';
 import PdfPrinter from 'pdfmake';
 import { documentData } from './template';
 
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
     Montserrat: {
-      normal: 'fonts/Montserrat-Regular.ttf',
-      bold: 'fonts/Montserrat-Bold.ttf',
-      italics: 'fonts/Montserrat-Italic.ttf',
-      bolditalics: 'fonts/Montserrat-MediumItalic.ttf',
+      normal: path.resolve('./public/', 'fonts/Montserrat-Regular.ttf'),
+      bold: path.resolve('./public/', 'fonts/Montserrat-Bold.ttf'),
+      italics: path.resolve('./public/', 'fonts/Montserrat-Italic.ttf'),
+      bolditalics: path.resolve(
+        './public/',
+        'fonts/Montserrat-MediumItalic.ttf'
+      ),
     },
   };
   const printer = new PdfPrinter(fontDescriptors);
