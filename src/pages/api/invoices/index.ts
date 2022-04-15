@@ -1,16 +1,13 @@
-import { join } from 'path';
 import PdfPrinter from 'pdfmake';
-import { documentData } from './template';
+import { documentData } from './_template';
 
-const basePath =
-  process.env.NODE_ENV === 'production' ? 'https://lynfaktura.dk/' : './';
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
     Montserrat: {
-      normal: join(basePath, 'fonts/Montserrat-Regular.ttf'),
-      bold: join(basePath, 'fonts/Montserrat-Bold.ttf'),
-      italics: join(basePath, 'fonts/Montserrat-Italic.ttf'),
-      bolditalics: join(basePath, 'fonts/Montserrat-MediumItalic.ttf'),
+      normal: 'fonts/Montserrat-Regular.ttf',
+      bold: 'fonts/Montserrat-Bold.ttf',
+      italics: 'fonts/Montserrat-Italic.ttf',
+      bolditalics: 'fonts/Montserrat-MediumItalic.ttf',
     },
   };
   const printer = new PdfPrinter(fontDescriptors);
