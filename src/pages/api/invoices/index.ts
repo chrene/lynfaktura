@@ -3,42 +3,23 @@ import { join } from 'path';
 import PdfPrinter from 'pdfmake';
 import { documentData } from './template';
 
-const { serverRuntimeConfig } = getConfig();
+let basePath = process.cwd();
+if (process.env.NODE_ENV === 'production')
+  basePath = join(process.cwd(), '.next/server/chunks');
 
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
     Roboto: {
-      normal: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Roboto-Regular.ttf'
-      ),
-      bold: join(serverRuntimeConfig.PROJECT_ROOT, './fonts/Roboto-Bold.ttf'),
-      italics: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Roboto-Italic.ttf'
-      ),
-      bolditalics: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Roboto-MediumItalic.ttf'
-      ),
+      normal: join(basePath, './fonts/Roboto-Regular.ttf'),
+      bold: join(basePath, './fonts/Roboto-Bold.ttf'),
+      italics: join(basePath, './fonts/Roboto-Italic.ttf'),
+      bolditalics: join(basePath, './fonts/Roboto-MediumItalic.ttf'),
     },
     Montserrat: {
-      normal: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Montserrat-Regular.ttf'
-      ),
-      bold: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Montserrat-Bold.ttf'
-      ),
-      italics: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Montserrat-Italic.ttf'
-      ),
-      bolditalics: join(
-        serverRuntimeConfig.PROJECT_ROOT,
-        './fonts/Montserrat-MediumItalic.ttf'
-      ),
+      normal: join(basePath, './fonts/Montserrat-Regular.ttf'),
+      bold: join(basePath, './fonts/Montserrat-Bold.ttf'),
+      italics: join(basePath, './fonts/Montserrat-Italic.ttf'),
+      bolditalics: join(basePath, './fonts/Montserrat-MediumItalic.ttf'),
     },
   };
   const printer = new PdfPrinter(fontDescriptors);
