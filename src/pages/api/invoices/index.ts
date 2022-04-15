@@ -5,16 +5,16 @@ import { join } from 'path';
 function createPdfBinary(pdfDoc): Promise<Buffer> {
   const fontDescriptors = {
     Roboto: {
-      normal: 'public/fonts/Roboto-Regular.ttf',
-      bold: 'public/fonts/Roboto-Bold.ttf',
-      italics: 'public/fonts/Roboto-Italic.ttf',
-      bolditalics: 'public/fonts/Roboto-MediumItalic.ttf',
+      normal: 'fonts/Roboto-Regular.ttf',
+      bold: 'fonts/Roboto-Bold.ttf',
+      italics: 'fonts/Roboto-Italic.ttf',
+      bolditalics: 'fonts/Roboto-MediumItalic.ttf',
     },
     Montserrat: {
-      normal: 'public/fonts/Montserrat-Regular.ttf',
-      bold: 'public/fonts/Montserrat-Bold.ttf',
-      italics: 'public/fonts/Montserrat-Italic.ttf',
-      bolditalics: 'public/fonts/Montserrat-MediumItalic.ttf',
+      normal: 'fonts/Montserrat-Regular.ttf',
+      bold: 'fonts/Montserrat-Bold.ttf',
+      italics: 'fonts/Montserrat-Italic.ttf',
+      bolditalics: 'fonts/Montserrat-MediumItalic.ttf',
     },
   };
   const printer = new PdfPrinter(fontDescriptors);
