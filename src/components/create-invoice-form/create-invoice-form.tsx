@@ -1,12 +1,11 @@
-import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { getCompanyByVAT } from '../../services/cvr-api';
 import { InvoiceData } from '../../../types/invoice-data';
+import { getCompanyByVAT } from '../../services/cvr-api';
+import { dxFactory } from '../../services/dx-factory';
 import Button from '../button';
-import { Divider } from '../divider/divider';
 import { FlexContainer } from '../flex-container';
 import FormInput from '../form-input';
 import FormInputCheckbox from '../form-input-checkbox';
@@ -15,7 +14,6 @@ import { defaultFormValues } from './default-form-values';
 import { FormGroup } from './form-group';
 import { validationSchema } from './form-validation';
 import { InvoiceSection } from './invoice-section';
-import { dxFactory } from '../../services/dx-factory';
 
 interface CreateInvoiceFormProps {
   dx?: { enabled: boolean };

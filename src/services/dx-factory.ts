@@ -1,5 +1,5 @@
-import { InvoiceData } from '../../types/invoice-data';
 import { faker } from '@faker-js/faker';
+import { InvoiceData } from '../../types/invoice-data';
 
 const range = (start: number, end?: number) => {
   const result = [];
