@@ -4,7 +4,7 @@ import CreateInvoiceForm from '../components/create-invoice-form';
 
 const IndexPage: NextPage = () => {
   return (
-    <div className='max-w-screen w-screen h-screen relative overflow-y-scroll flex flex-col bg-base-200 px-4 lg:px-12 md:px-32 2xl:px-80'>
+    <div className='max-w-full w-full h-full max-h-full relative overflow-y-scroll flex flex-col bg-base-200 px-4 lg:px-12 md:px-32 2xl:px-80 overflow-x-hidden'>
       <Head>
         <title>
           Lynfaktura - nem oprettelse af faktura online til både ervherv og

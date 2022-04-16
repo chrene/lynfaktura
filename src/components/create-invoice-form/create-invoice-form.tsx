@@ -110,19 +110,19 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
           Udfyld test data
         </button>
       )}
-      <div className='bg-base-100 rounded-xl mt-8 lg:mt-16 lg:mx-auto p-8 lg:p-16'>
+      <div className='bg-base-100 rounded-xl mt-8 lg:mt-16 lg:mx-auto p-5 lg:p-16 relative overflow-x-hidden'>
         <FlexContainer dividers>
           <InvoiceSection title='Fakturalinjer'>
-            <ul className='gap-4 flex flex-col'>
+            <ul className='gap-4 flex flex-col relative'>
               {fields.length > 0 ? (
                 fields.map((item, index) => {
                   return (
                     <li
-                      className='grid grid-cols-12 p-8 mb-4 xl:mb-0 xl:p-0 gap-4 xl:gap-8 border xl:border-none'
+                      className='grid grid-cols-12 pt-8 first:pt-0 xl:p-0 mb-4 xl:mb-0 gap-4 xl:gap-8 relative'
                       key={item.id}
                     >
                       <FormInput
-                        className='col-span-12 lg:col-span-7'
+                        className='col-span-12 xl:col-span-7'
                         type='text'
                         topLeftLabel='Beskrivelse'
                         errors={errors}
@@ -131,7 +131,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                         }}
                       />
                       <FormInput
-                        className='col-span-6 lg:col-span-2'
+                        className='col-span-6 xl:col-span-2'
                         type='number'
                         topLeftLabel='Antal'
                         errors={errors}
@@ -140,7 +140,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                         }}
                       />
                       <FormInput
-                        className='col-span-6 lg:col-span-2'
+                        className='col-span-6 xl:col-span-2'
                         type='number'
                         topLeftLabel='Enhedspris'
                         errors={errors}
@@ -151,7 +151,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
 
                       <button
                         className={classNames(
-                          `btn btn-circle btn-error btn-link btn-xs set-fill text-neutral self-center lg:mt-10 top-4 right-4 absolute lg:relative lg:col-span-1`,
+                          `btn btn-circle btn-error btn-link btn-xs set-fill text-neutral self-center xl:mt-10 top-4 xl:top-0 right-0 absolute xl:relative xl:col-span-1`,
                           {
                             hidden: index === 0,
                           }
