@@ -199,7 +199,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <Button
                   small
                   primary
-                  className='self-end col-span-6 lg:col-span-4'
+                  className='self-end col-span-6 w-fit px-6'
                   onClick={handleFetchSenderCompany}
                 >
                   <svg
@@ -296,7 +296,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <Button
                   primary
                   small
-                  className='col-span-6 lg:col-span-3 self-end'
+                  className='col-span-6 w-fit px-6 self-end'
                   onClick={(e) => handleFetchReceiverCompany(e)}
                 >
                   <svg
@@ -417,7 +417,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 small
                 primary
                 onClick={handleSubmit(onFormSubmit)}
-                className='col-span-12 gap-2 lg:col-span-4 lg:gap-2'
+                className='col-span-12 w-fit px-6'
               >
                 <DownloadIcon />
                 Download PDF
