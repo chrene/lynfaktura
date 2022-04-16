@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import CreateInvoiceForm from '../components/create-invoice-form';
 import Meta from '../components/meta/meta';
 
