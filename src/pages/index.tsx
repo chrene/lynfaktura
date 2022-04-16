@@ -4,7 +4,7 @@ import CreateInvoiceForm from '../components/create-invoice-form';
 
 const IndexPage: NextPage = () => {
   return (
-    <div className='w-screen h-screen relative overflow-y-scroll flex flex-col bg-base-200 px-12 md:px-32 2xl:px-80'>
+    <div className='max-w-screen w-screen h-screen relative overflow-y-scroll flex flex-col bg-base-200 px-4 lg:px-12 md:px-32 2xl:px-80'>
       <Head>
         <title>
           Lynfaktura - nem oprettelse af faktura online til både ervherv og
@@ -13,7 +13,7 @@ const IndexPage: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <header className='mt-12'>
-        <h1 className='text-2xl font-bold'>lynfaktura.dk</h1>
+        <h1 className='text-2xl font-bold'>LynFaktura</h1>
       </header>
       <main>
         <CreateInvoiceForm dx={{ enabled: process.env.dxEnabled === 'true' }} />

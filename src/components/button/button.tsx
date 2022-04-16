@@ -22,7 +22,7 @@ export const Button = (props: {
   } = props;
 
   const classes = classNames(
-    'btn',
+    'btn min-w-fit flex-nowrap whitespace-nowrap flex flex-row',
     {
       'btn-primary': primary,
       'btn-outline': outline,

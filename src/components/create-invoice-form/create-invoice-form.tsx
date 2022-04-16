@@ -110,7 +110,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
           Udfyld test data
         </button>
       )}
-      <div className='bg-base-100 rounded-xl mt-16 mx-auto p-16'>
+      <div className='bg-base-100 rounded-xl mt-8 lg:mt-16 lg:mx-auto p-8 lg:p-16'>
         <FlexContainer dividers>
           <InvoiceSection title='Fakturalinjer'>
             <ul className='gap-4 flex flex-col'>
@@ -118,11 +118,11 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 fields.map((item, index) => {
                   return (
                     <li
-                      className='grid grid-cols-12 p-8 mb-4 xl:mb-0 xl:p-0 gap-8 xl:gap-8 border xl:border-none'
+                      className='grid grid-cols-12 p-8 mb-4 xl:mb-0 xl:p-0 gap-4 xl:gap-8 border xl:border-none'
                       key={item.id}
                     >
                       <FormInput
-                        className='col-span-5 lg:col-span-7'
+                        className='col-span-12 lg:col-span-7'
                         type='text'
                         topLeftLabel='Beskrivelse'
                         errors={errors}
@@ -131,7 +131,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                         }}
                       />
                       <FormInput
-                        className='col-span-3 lg:col-span-2'
+                        className='col-span-6 lg:col-span-2'
                         type='number'
                         topLeftLabel='Antal'
                         errors={errors}
@@ -140,7 +140,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                         }}
                       />
                       <FormInput
-                        className='col-span-3 lg:col-span-2'
+                        className='col-span-6 lg:col-span-2'
                         type='number'
                         topLeftLabel='Enhedspris'
                         errors={errors}
@@ -151,7 +151,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
 
                       <button
                         className={classNames(
-                          `btn btn-circle btn-error btn-link btn-xs set-fill text-neutral self-center mt-10 col-span-12 xl:col-span-1`,
+                          `btn btn-circle btn-error btn-link btn-xs set-fill text-neutral self-center lg:mt-10 top-4 right-4 absolute lg:relative lg:col-span-1`,
                           {
                             hidden: index === 0,
                           }
@@ -196,8 +196,10 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                     }),
                   }}
                 />
-                <button
-                  className='btn btn-primary gap-2 self-end col-span-3 btn-sm'
+                <Button
+                  small
+                  primary
+                  className='self-end col-span-6 lg:col-span-4'
                   onClick={handleFetchSenderCompany}
                 >
                   <svg
@@ -215,46 +217,52 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                     />
                   </svg>
                   Hent data
-                </button>
+                </Button>
               </FormGroup>
             </FlexContainer>
             <FlexContainer>
-              <FormGroup autoCols>
+              <FormGroup cols>
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Navn'
                   topLeftLabel='Navn'
                   errors={errors}
                   register={{ ...register('sender.name') }}
                 />
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Adresse'
                   topLeftLabel='Adresse'
                   errors={errors}
                   register={{ ...register('sender.address') }}
                 />
               </FormGroup>
-              <FormGroup autoCols>
+              <FormGroup cols>
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Postnummer'
                   topLeftLabel='Postnummer'
                   errors={errors}
                   register={{ ...register('sender.zipcode') }}
                 />
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='By'
                   topLeftLabel='By'
                   errors={errors}
                   register={{ ...register('sender.city') }}
                 />
               </FormGroup>
-              <FormGroup autoCols>
+              <FormGroup cols>
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Email'
                   topLeftLabel='Email'
                   errors={errors}
                   register={{ ...register('sender.email') }}
                 />
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Telefon'
                   topLeftLabel='Telefon'
                   errors={errors}
@@ -285,8 +293,10 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   errors={errors}
                   register={{ ...register('receiver.vat') }}
                 />
-                <button
-                  className='btn btn-primary gap-2 col-span-3 self-end btn-sm'
+                <Button
+                  primary
+                  small
+                  className='col-span-6 lg:col-span-3 self-end'
                   onClick={(e) => handleFetchReceiverCompany(e)}
                 >
                   <svg
@@ -304,32 +314,36 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                     />
                   </svg>
                   Hent data
-                </button>
+                </Button>
               </FormGroup>
             ) : null}
             <FlexContainer>
-              <FormGroup autoCols>
+              <FormGroup cols>
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Navn'
                   topLeftLabel='Navn'
                   errors={errors}
                   register={{ ...register('receiver.name') }}
                 />
                 <FormInput
+                  className='col-span-12 lg:col-span-6'
                   placeholder='Adresse'
                   topLeftLabel='Adresse'
                   errors={errors}
                   register={{ ...register('receiver.address') }}
                 />
               </FormGroup>
-              <FormGroup autoCols>
+              <FormGroup cols>
                 <FormInput
-                  placeholder='Postnummer'
-                  topLeftLabel='Postnummer'
+                  className='col-span-4 lg:col-span-6'
+                  placeholder='Postnr.'
+                  topLeftLabel='Postnr.'
                   errors={errors}
                   register={{ ...register('receiver.zipcode') }}
                 />
                 <FormInput
+                  className='col-span-8 lg:col-span-6'
                   placeholder='By'
                   topLeftLabel='By'
                   errors={errors}
@@ -343,14 +357,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
           <InvoiceSection title='Fakturaoplysninger'>
             <FormGroup cols>
               <FormInput
-                className='col-span-4'
+                className='col-span-12 lg:col-span-4'
                 placeholder='Fakturanummer'
                 topLeftLabel='Fakturanummer'
                 errors={errors}
                 register={{ ...register('invoice.number') }}
               />
               <FormInput
-                className='col-span-4'
+                className='col-span-6 lg:col-span-4'
                 type='date'
                 placeholder='Fakturadato'
                 topLeftLabel='Fakturadato'
@@ -358,7 +372,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 register={{ ...register('invoice.date') }}
               />
               <FormInput
-                className='col-span-4'
+                className='col-span-6 lg:col-span-4'
                 type='date'
                 placeholder='Betalingsdato'
                 topLeftLabel='Betalingsdato'
@@ -368,14 +382,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
             </FormGroup>
             <FormGroup cols>
               <FormInput
-                className='col-span-4'
+                className='col-span-12 lg:col-span-4'
                 placeholder='1234'
                 topLeftLabel='Bank registreringsnummer'
                 errors={errors}
                 register={{ ...register('invoice.bankRegistrationNumber') }}
               />
               <FormInput
-                className='col-span-8'
+                className='col-span-12 lg:col-span-8'
                 placeholder='12345678'
                 topLeftLabel='Bank kontonummer'
                 errors={errors}
@@ -403,7 +417,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 small
                 primary
                 onClick={handleSubmit(onFormSubmit)}
-                className='col-span-4 gap-2'
+                className='col-span-12 gap-2 lg:col-span-4 lg:gap-2'
               >
                 <DownloadIcon />
                 Download PDF
