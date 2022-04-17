@@ -122,7 +122,8 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                       <FormInput
                         className='col-span-12 xl:col-span-7'
                         type='text'
-                        topLeftLabel='Beskrivelse'
+                        label='Beskrivelse'
+                        placeholder='Beskrivelse'
                         errors={errors}
                         register={{
                           ...register(`lines.${index}.description`),
@@ -131,7 +132,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                       <FormInput
                         className='col-span-6 xl:col-span-2'
                         type='number'
-                        topLeftLabel='Antal'
+                        label='Antal'
                         errors={errors}
                         register={{
                           ...register(`lines.${index}.quantity`),
@@ -140,7 +141,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                       <FormInput
                         className='col-span-6 xl:col-span-2'
                         type='number'
-                        topLeftLabel='Enhedspris'
+                        label='Enhedspris'
                         errors={errors}
                         register={{
                           ...register(`lines.${index}.price`),
@@ -185,7 +186,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-6'
                   placeholder='CVR'
-                  topLeftLabel='CVR'
+                  label='CVR'
                   errors={errors}
                   register={{
                     ...register('sender.vat', {
@@ -223,14 +224,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Navn'
-                  topLeftLabel='Navn'
+                  label='Navn'
                   errors={errors}
                   register={{ ...register('sender.name') }}
                 />
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Adresse'
-                  topLeftLabel='Adresse'
+                  label='Adresse'
                   errors={errors}
                   register={{ ...register('sender.address') }}
                 />
@@ -239,14 +240,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Postnummer'
-                  topLeftLabel='Postnummer'
+                  label='Postnummer'
                   errors={errors}
                   register={{ ...register('sender.zipcode') }}
                 />
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='By'
-                  topLeftLabel='By'
+                  label='By'
                   errors={errors}
                   register={{ ...register('sender.city') }}
                 />
@@ -255,14 +256,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Email'
-                  topLeftLabel='Email'
+                  label='Email'
                   errors={errors}
                   register={{ ...register('sender.email') }}
                 />
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Telefon'
-                  topLeftLabel='Telefon'
+                  label='Telefon'
                   errors={errors}
                   register={{
                     ...register('sender.phone', {
@@ -287,7 +288,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-6'
                   placeholder='CVR'
-                  topLeftLabel='CVR'
+                  label='CVR'
                   errors={errors}
                   register={{ ...register('receiver.vat') }}
                 />
@@ -320,14 +321,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Navn'
-                  topLeftLabel='Navn'
+                  label='Navn'
                   errors={errors}
                   register={{ ...register('receiver.name') }}
                 />
                 <FormInput
                   className='col-span-12 lg:col-span-6'
                   placeholder='Adresse'
-                  topLeftLabel='Adresse'
+                  label='Adresse'
                   errors={errors}
                   register={{ ...register('receiver.address') }}
                 />
@@ -336,14 +337,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 <FormInput
                   className='col-span-4 lg:col-span-6'
                   placeholder='Postnr.'
-                  topLeftLabel='Postnr.'
+                  label='Postnr.'
                   errors={errors}
                   register={{ ...register('receiver.zipcode') }}
                 />
                 <FormInput
                   className='col-span-8 lg:col-span-6'
                   placeholder='By'
-                  topLeftLabel='By'
+                  label='By'
                   errors={errors}
                   register={{ ...register('receiver.city') }}
                 />
@@ -357,7 +358,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
               <FormInput
                 className='col-span-12 lg:col-span-4'
                 placeholder='Fakturanummer'
-                topLeftLabel='Fakturanummer'
+                label='Fakturanummer'
                 errors={errors}
                 register={{ ...register('invoice.number') }}
               />
@@ -365,7 +366,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 className='col-span-6 lg:col-span-4'
                 type='date'
                 placeholder='Fakturadato'
-                topLeftLabel='Fakturadato'
+                label='Fakturadato'
                 errors={errors}
                 register={{ ...register('invoice.date') }}
               />
@@ -373,7 +374,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 className='col-span-6 lg:col-span-4'
                 type='date'
                 placeholder='Betalingsdato'
-                topLeftLabel='Betalingsdato'
+                label='Betalingsdato'
                 errors={errors}
                 register={{ ...register('invoice.due') }}
               />
@@ -382,14 +383,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
               <FormInput
                 className='col-span-12 lg:col-span-4'
                 placeholder='1234'
-                topLeftLabel='Bank registreringsnummer'
+                label='Bank registreringsnummer'
                 errors={errors}
                 register={{ ...register('invoice.bankRegistrationNumber') }}
               />
               <FormInput
                 className='col-span-12 lg:col-span-8'
                 placeholder='12345678'
-                topLeftLabel='Bank kontonummer'
+                label='Bank kontonummer'
                 errors={errors}
                 register={{ ...register('invoice.bankAccountNumber') }}
               />

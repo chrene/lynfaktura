@@ -1,10 +1,10 @@
-import { ErrorMessage } from '@hookform/error-message';
-import classNames from 'classnames';
 import React from 'react';
+import classNames from 'classnames';
+import { ErrorMessage } from '@hookform/error-message';
 
 export const FormInput = (props: {
   placeholder?: string;
-  topLeftLabel?: string;
+  label?: string;
   type?: string;
   register?: any;
   className?: string;
@@ -15,20 +15,23 @@ export const FormInput = (props: {
     placeholder,
     className,
     type,
-    topLeftLabel,
+    label,
     register,
     errors = {},
     ...rest
   } = props;
   return (
-    <div className={classNames('form-control', className)}>
+    <div className={classNames('form-control relative', className)}>
       <label className='label'>
-        <span className='label-text'>{topLeftLabel}</span>
+        <span className='label-text'>{label}</span>
       </label>
       <input
         type={type || 'text'}
         placeholder={placeholder}
-        className={classNames('input input-bordered input-sm', className)}
+        className={classNames(
+          'input input-bordered focus:outline-none input-sm',
+          className
+        )}
         {...register}
         {...rest}
       />
