@@ -5,13 +5,12 @@ const invoiceLinesSchema = yup.array().of(
     description: yup.string().max(50, 'Max 50 tegn').required('Påkrævet'),
     quantity: yup
       .number()
-      .typeError('Skal være et heltal')
-      .integer('Skal være et heltal')
+      .typeError('Skal være et tal')
       .min(1, 'Skal minimum være 1')
       .required('Påkrævet'),
     price: yup
       .number()
-      .typeError('Skal være et heltal')
+      .typeError('Skal være et tal')
       .min(1, 'Skal minimum være 1')
       .required('Påkrævet'),
   })
@@ -27,14 +26,7 @@ const invoiceSenderSchema = yup.object({
   city: yup.string().required('Påkrævet'),
   vat: yup.string().required('Påkrævet'),
   email: yup.string().email('Ugyldig email'),
-  phone: yup
-    .string()
-    .nullable()
-    .test(
-      'empty-or-8-characters-check',
-      'Telefon skal være på 8 tegn',
-      (phone) => !phone || phone.length >= 8
-    ),
+  phone: yup.string().nullable(),
 });
 
 const invoiceReceiverSchema = yup.object({
@@ -57,13 +49,7 @@ export const validationSchema = yup.object({
     number: yup.string().required('Påkrævet'),
     date: yup.string().required('Påkrævet'),
     due: yup.string().required('Påkrævet'),
-    bankRegistrationNumber: yup
-      .string()
-      .length(4, 'Registrerings nummer skal være 4 tegn')
-      .required('Påkrævet'),
-    bankAccountNumber: yup
-      .string()
-      .length(8, 'Kontonummer skal være 8 tegn')
-      .required('Påkrævet'),
+    bankRegistrationNumber: yup.string().required('Påkrævet'),
+    bankAccountNumber: yup.string().required('Påkrævet'),
   }),
 });
