@@ -96,7 +96,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
     <form onSubmit={(e) => e.preventDefault()}>
       {dx?.enabled && (
         <button
-          className="btn btn-primary btn-outline btn-sm fixed bottom-4 right-4"
+          className="btn btn-primary btn-outline btn fixed bottom-4 right-4"
           onClick={() => {
             const data = dxFactory.invoice.create();
             reset(data);
@@ -166,7 +166,6 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
             <div className="w-fit self-center">
               <Button
                 ghost
-                small
                 onClick={() => append({ description: '', quantity: null, price: null })}
               >
                 Tilføj ny linje
@@ -191,7 +190,6 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   }}
                 />
                 <Button
-                  small
                   primary
                   className="self-end col-span-6 w-fit px-6"
                   onClick={handleFetchSenderCompany}
@@ -289,7 +287,6 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 />
                 <Button
                   primary
-                  small
                   className="col-span-6 w-fit px-6 self-end"
                   onClick={(e) => handleFetchReceiverCompany(e)}
                 >
@@ -402,7 +399,6 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
           <InvoiceSection title="Hent faktura">
             <FormGroup cols>
               <Button
-                small
                 primary
                 onClick={handleSubmit(onFormSubmit)}
                 className="col-span-12 w-fit px-6"

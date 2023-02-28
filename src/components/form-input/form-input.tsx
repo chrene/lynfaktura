@@ -11,27 +11,16 @@ export const FormInput = (props: {
   errors?: any;
   onChange?: any;
 }) => {
-  const {
-    placeholder,
-    className,
-    type,
-    label,
-    register,
-    errors = {},
-    ...rest
-  } = props;
+  const { placeholder, className, type, label, register, errors = {}, ...rest } = props;
   return (
     <div className={classNames('form-control relative', className)}>
-      <label className='label'>
-        <span className='label-text'>{label}</span>
+      <label className="label">
+        <span className="label-text">{label}</span>
       </label>
       <input
         type={type || 'text'}
         placeholder={placeholder}
-        className={classNames(
-          'input input-bordered focus:outline-none input-sm',
-          className
-        )}
+        className={classNames('input input-bordered focus:outline-none', className)}
         {...register}
         {...rest}
       />
@@ -39,7 +28,7 @@ export const FormInput = (props: {
         errors={errors}
         name={register.name}
         render={(props) => {
-          return <span className='text-error mt-2'>{props.message}</span>;
+          return <span className="text-error mt-2">{props.message}</span>;
         }}
       />
     </div>

@@ -9,10 +9,6 @@ input[type='number']::-webkit-outer-spin-button {
   appearance: none;
 }
 
-[class*='-sm'] {
-  height: 2.6rem;
-}
-
 [class*='btn'] {
   text-transform: unset;
 }
@@ -20,6 +16,18 @@ input[type='number']::-webkit-outer-spin-button {
 .divider:before,
 .divider:after {
   height: 1px;
+}
+
+.faq-question {
+  @apply mt-8 max-w-lg lg:max-w-2xl;
+}
+
+.faq-question h3 {
+  @apply text-base font-bold;
+}
+
+.faq-question p {
+  @apply text-base mt-2;
 }
 
 @font-face {
