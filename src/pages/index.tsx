@@ -7,7 +7,7 @@ const IndexPage: NextPage = () => {
     <div className="max-w-full w-full h-full max-h-full relative overflow-y-scroll flex flex-col bg-base-200 px-4 lg:px-12 md:px-32 2xl:px-80  overflow-x-hidden">
       <Meta />
       <header className="mt-12 w-full lg:max-w-5xl mx-auto">
-        <h1 className="text-2xl font-bold">Opret nemt faktura PDF'er online med Lynfaktura</h1>
+        <h1 className="text-2xl font-bold">Opret nemt faktura PDF'er online med Lynfaktura.dk</h1>
         <p className="mt-4 text-sm text-neutral/60 max-w-lg lg:max-w-2xl leading-relaxed">
           Lynfaktura.dk er det perfekte værktøj til at oprette og danne Faktura PDF'er på en nem og
           hurtig måde. Med vores brugervenlige online fakturaskabelon kan du oprette en professionel
@@ -38,7 +38,7 @@ const IndexPage: NextPage = () => {
             <h3>Kan jeg sende fakturaen direkte til mine kunder via Lynfaktura.dk?</h3>
             <p>
               Desværre ikke, men du kan nemt sende fakturaen direkte til dine kunder via email når
-              du har downloadet den færdige faktura som PDF Lynfaktura.dk.
+              du har downloadet den færdige faktura som PDF.
             </p>
           </div>
           <div className="faq-question">
