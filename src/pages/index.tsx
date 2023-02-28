@@ -15,6 +15,18 @@ const IndexPage: NextPage = () => {
       <footer className="footer footer-center p-12 bg-base-200 text-base-content mt-auto mx-auto">
         <div>
           <p>Copyright © 2023 - lynfaktura.dk</p>
+          {/* hjemmeside lavet af enevoldsen.io */}
+          <p className="text-neutral/60 text-xs mt-4">
+            Siden er udviklet af{' '}
+            <a
+              href="https://enevoldsen.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              enevoldsen.io
+            </a>
+          </p>
         </div>
       </footer>
     </div>
