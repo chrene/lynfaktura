@@ -8,10 +8,10 @@ const IndexPage: NextPage = () => {
       <Meta />
       <header className="mt-12 w-full lg:max-w-5xl mx-auto">
         <h1 className="text-2xl font-bold">
-          Opret nemt faktura PDF'er online med Lynfaktura.dk
+          Opret nemt faktura PDF'er online med PDFFaktura.dk
         </h1>
         <p className="mt-4 text-sm text-neutral/60 max-w-lg lg:max-w-2xl leading-relaxed">
-          Lynfaktura.dk er det perfekte værktøj til at oprette og danne Faktura
+          PDFFaktura.dk er det perfekte værktøj til at oprette og danne Faktura
           PDF'er på en nem og hurtig måde. Med vores brugervenlige online
           fakturaskabelon kan du oprette en professionel faktura på få minutter
           uden at bekymre dig om at skulle bruge en faktura skabelon i excel
@@ -25,7 +25,7 @@ const IndexPage: NextPage = () => {
           <h2 className="font-bold text-xl">Ofte stillede spørgsmål</h2>
           <div className="faq-question">
             <h3 className="font-bold">
-              Hvordan opretter jeg en faktura med Lynfaktura.dk?
+              Hvordan opretter jeg en faktura med PDFFaktura.dk?
             </h3>
             <p>
               Det er nemt! Du kan bruge vores brugervenlige fakturaskabelon og
@@ -42,7 +42,7 @@ const IndexPage: NextPage = () => {
           </div> */}
           <div className="faq-question">
             <h3>
-              Kan jeg sende fakturaen direkte til mine kunder via Lynfaktura.dk?
+              Kan jeg sende fakturaen direkte til mine kunder via PDFFaktura.dk?
             </h3>
             <p>
               Desværre ikke, men du kan nemt sende fakturaen direkte til dine
@@ -52,17 +52,17 @@ const IndexPage: NextPage = () => {
           </div>
           <div className="faq-question">
             <h3>
-              Er der nogen omkostninger forbundet med brugen af Lynfaktura.dk?
+              Er der nogen omkostninger forbundet med brugen af PDFFaktura.dk?
             </h3>
             <p>
-              Du kan bruge Lynfaktura.dk helt gratis. Vi har ingen
+              Du kan bruge PDFFaktura.dk helt gratis. Vi har ingen
               abonnementspriser eller andre skjulte omkostninger.
             </p>
           </div>
           <div className="faq-question">
             <h3>Kan jeg oprette fakturaer fra min smartphone eller tablet?</h3>
             <p>
-              Ja, Lynfaktura.dk er mobilvenligt og giver dig mulighed for at
+              Ja, PDFFaktura.dk er mobilvenligt og giver dig mulighed for at
               oprette fakturaer fra din smartphone eller tablet, uanset hvor du
               er.
             </p>
@@ -71,12 +71,12 @@ const IndexPage: NextPage = () => {
       </main>
       <footer className="footer footer-center p-12 bg-base-200 text-base-content mt-auto mx-auto">
         <div>
-          <p>Copyright © 2023 - lynfaktura.dk</p>
+          <p>Copyright © 2025 - pdffaktura.dk</p>
           {/* hjemmeside lavet af enevoldsen.io */}
           <p className="text-neutral/60 text-xs mt-4">
             Siden er udviklet af{" "}
             <a
-              href="https://enevoldsen.io"
+              href="https://chrs.gg?ref=pdffaktura"
               target="_blank"
               rel="noopener noreferrer"
               className="underline"

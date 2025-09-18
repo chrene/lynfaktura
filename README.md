@@ -1,10 +1,10 @@
-# 🧾 Lynfaktura.dk
+# 🧾 PDFFaktura.dk
 
 **Professional Invoice PDF Generator for Danish Businesses**
 
-Lynfaktura.dk is a modern, user-friendly web application that enables Danish businesses and freelancers to create professional invoice PDFs quickly and easily online. Built with Next.js, TypeScript, and DaisyUI.
+PDFFaktura.dk is a modern, user-friendly web application that enables Danish businesses and freelancers to create professional invoice PDFs quickly and easily online. Built with Next.js, TypeScript, and DaisyUI.
 
-![Lynfaktura Screenshot](public/lynfaktura-logo.png)
+![PDFFaktura Screenshot](public/pdffaktura-logo.png)
 
 ## ✨ Features
 
@@ -40,8 +40,8 @@ Lynfaktura.dk is a modern, user-friendly web application that enables Danish bus
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/chrene/lynfaktura.git
-   cd lynfaktura
+   git clone https://github.com/chrene/pdffaktura.git
+   cd pdffaktura
    ```
 
 2. **Install dependencies**
@@ -86,7 +86,7 @@ pnpm test         # Run test suite
 ### Project Structure
 
 ```
-lynfaktura/
+pdffaktura/
 ├── public/                 # Static assets
 │   ├── fonts/             # Montserrat font files
 │   └── *.png             # Favicons and logos
@@ -164,7 +164,7 @@ pnpm build
 
 ### Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/chrene/lynfaktura)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/chrene/pdffaktura)
 
 ### Manual Deployment
 
@@ -180,7 +180,7 @@ This project is private and proprietary.
 
 **Christian Enevoldsen**
 
-- Website: [lynfaktura.dk](https://lynfaktura.dk)
+- Website: [pdffaktura.dk](https://pdffaktura.dk)
 - GitHub: [@chrene](https://github.com/chrene)
 
 ## 🤝 Contributing

@@ -1,9 +1,20 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-const Meta = ({ title, keywords, description, ogTitle, ogType, ogUrl, ogImage }) => {
+const Meta = ({
+  title,
+  keywords,
+  description,
+  ogTitle,
+  ogType,
+  ogUrl,
+  ogImage,
+}) => {
   return (
     <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      ></meta>
       <meta name="keywords" content={keywords}></meta>
       <meta name="description" content={description}></meta>
       {ogTitle && <meta property="og:title" content={ogTitle} />}
@@ -16,15 +27,20 @@ const Meta = ({ title, keywords, description, ogTitle, ogType, ogUrl, ogImage })
     </Head>
   );
 };
-Meta.defaultProps = {
-  title: "Opret nemt faktura PDF'er online med Lynfaktura.dk - Gratis fakturaskabelon",
-  keywords:
-    'faktura skabelon excel, skabelon faktura, skabelon til faktura, online faktura, gratis faktura, fakturaskabelon, faktura skabelon, gratis faktura skabelon',
+const defaultSEO = {
+  title:
+    "Opret nemt faktura PDF'er online med PDFFaktura.dk - Gratis fakturaskabelon",
   description:
-    "Lynfaktura.dk er det perfekte værktøj til at oprette og danne Faktura PDF'er på en nem og hurtig måde.",
-  ogTitle: "Opret nemt faktura PDF'er online med Lynfaktura.dk - Gratis fakturaskabelon",
-  ogType: 'website',
-  ogUrl: 'https://lynfaktura.dk',
-  ogImage: 'https://lynfaktura.dk/lynfaktura-logo.png',
+    "Opret professionelle fakturaer nemt og hurtigt med vores gratis online faktura skabelon.",
+  keywords:
+    "PDFFaktura.dk er det perfekte værktøj til at oprette og danne Faktura PDF'er på en nem og hurtig måde.",
+  ogTitle:
+    "Opret nemt faktura PDF'er online med PDFFaktura.dk - Gratis fakturaskabelon",
+  ogType: "website",
+  ogUrl: "https://pdffaktura.dk",
+  ogImage: "https://pdffaktura.dk/pdffaktura-logo.png",
 };
+
+Meta.defaultProps = defaultSEO;
+
 export default Meta;
