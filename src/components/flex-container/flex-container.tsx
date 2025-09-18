@@ -10,7 +10,7 @@ export const FlexContainer = (props: {
   return (
     <div className='flex flex-col gap-8' {...rest}>
       {dividers
-        ? children.map((child: React.ReactChild, index: React.Key) => {
+        ? children.map((child: React.ReactChild, index: number) => {
             return (
               <React.Fragment key={index}>
                 {index > 0 && <Divider className='my-8' />}

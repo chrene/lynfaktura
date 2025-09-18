@@ -35,13 +35,14 @@ const invoiceReceiverSchema = yup.object({
   zipcode: yup.string().required('Påkrævet'),
   city: yup.string().required('Påkrævet'),
   isCompany: yup.boolean().required('Påkrævet'),
-  vat: yup.string().when('isCompany', {
-    is: true,
-    then: yup.string().required('Påkrævet'),
+  vat: yup.string().when('isCompany', ([isCompany], schema) => {
+    return isCompany ? schema.required('Påkrævet') : schema;
   }),
 });
 
 export const validationSchema = yup.object({
+  lateFee: yup.boolean(),
+  addTax: yup.boolean(),
   lines: invoiceLinesSchema,
   sender: invoiceSenderSchema,
   receiver: invoiceReceiverSchema,

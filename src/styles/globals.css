@@ -1,7 +1,4 @@
-@tailwind components;
-@tailwind base;
-@tailwind utilities;
-
+@import "tailwindcss";
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -19,7 +16,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .faq-question {
-  @apply mt-8 max-w-lg lg:max-w-2xl;
+  @apply mt-8 max-w-lg lg:max-w-xl;
 }
 
 .faq-question h3 {

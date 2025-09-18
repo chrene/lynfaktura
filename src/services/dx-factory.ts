@@ -22,42 +22,42 @@ export const dxFactory = {
         ...data,
         lines:
           data?.lines ||
-          range(faker.datatype.number({ min: 1, max: 5 })).map(() => {
+          range(faker.number.int({ min: 1, max: 5 })).map(() => {
             return {
               description: faker.lorem.sentence(3),
-              quantity: faker.datatype.number({ min: 1, max: 10 }),
-              price: faker.datatype.number({ min: 1, max: 1000 }),
+              quantity: faker.number.int({ min: 1, max: 10 }),
+              price: faker.number.int({ min: 1, max: 1000 }),
             };
           }),
         receiver: {
-          name: data?.receiver.name || faker.name.findName(),
-          address: data?.receiver.address || faker.address.streetAddress(),
-          zipcode: data?.receiver.zipcode || faker.address.zipCode('####'),
-          city: data?.receiver.city || faker.address.city(),
-          vat: data?.receiver.vat || faker.finance.account(8),
+          name: data?.receiver.name || faker.person.fullName(),
+          address: data?.receiver.address || faker.location.streetAddress(),
+          zipcode: data?.receiver.zipcode || faker.location.zipCode('####'),
+          city: data?.receiver.city || faker.location.city(),
+          vat: data?.receiver.vat || faker.finance.accountNumber(8),
           isCompany: true,
         },
         sender: {
           ...data?.sender,
-          name: data?.sender.name || faker.name.findName(),
-          address: data?.sender.address || faker.address.streetAddress(),
-          zipcode: data?.sender.zipcode || faker.address.zipCode('####'),
-          city: data?.sender.city || faker.address.city(),
-          vat: data?.sender.vat || faker.finance.account(8),
+          name: data?.sender.name || faker.person.fullName(),
+          address: data?.sender.address || faker.location.streetAddress(),
+          zipcode: data?.sender.zipcode || faker.location.zipCode('####'),
+          city: data?.sender.city || faker.location.city(),
+          vat: data?.sender.vat || faker.finance.accountNumber(8),
           email: data?.sender.email || faker.internet.email(),
-          phone: data?.sender.phone || faker.phone.phoneNumber('+45########'),
+          phone: data?.sender.phone || faker.phone.number(),
         },
         invoice: {
           ...data?.invoice,
           bankAccountNumber:
-            data?.invoice.bankAccountNumber || faker.finance.account(8),
+            data?.invoice.bankAccountNumber || faker.finance.accountNumber(8),
           bankRegistrationNumber:
-            data?.invoice.bankRegistrationNumber || faker.finance.account(4),
-          number: data?.invoice.number || faker.random.alphaNumeric(6),
+            data?.invoice.bankRegistrationNumber || faker.finance.accountNumber(4),
+          number: data?.invoice.number || faker.string.alphanumeric(6),
           date: data?.invoice.date || new Date().toISOString().split('T')[0],
           due:
             data?.invoice.due ||
-            faker.date.soon(8, new Date()).toISOString().split('T')[0],
+            faker.date.soon({ days: 8 }).toISOString().split('T')[0],
         },
         addTax: data?.addTax || faker.datatype.boolean(),
         lateFee: data?.lateFee || faker.datatype.boolean(),

@@ -20,9 +20,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.62.0(react@17.0.2))
-      '@tailwindcss/postcss':
-        specifier: ^4.1.13
-        version: 4.1.13
+      '@next/env':
+        specifier: ^12.1.4
+        version: 12.1.4
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
@@ -63,6 +63,9 @@ importers:
         specifier: ^1.7.0
         version: 1.7.0
     devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.1.13
+        version: 4.1.13
       '@testing-library/jest-dom':
         specifier: ^6.8.0
         version: 6.8.0
