@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
-import { InvoiceData } from '../../types/invoice-data';
+import { faker } from "@faker-js/faker";
+import { InvoiceData } from "../../types/invoice-data";
 
 const range = (start: number, end?: number) => {
   const result = [];
@@ -32,7 +32,7 @@ export const dxFactory = {
         receiver: {
           name: data?.receiver.name || faker.person.fullName(),
           address: data?.receiver.address || faker.location.streetAddress(),
-          zipcode: data?.receiver.zipcode || faker.location.zipCode('####'),
+          zipcode: data?.receiver.zipcode || faker.location.zipCode("####"),
           city: data?.receiver.city || faker.location.city(),
           vat: data?.receiver.vat || faker.finance.accountNumber(8),
           isCompany: true,
@@ -41,7 +41,7 @@ export const dxFactory = {
           ...data?.sender,
           name: data?.sender.name || faker.person.fullName(),
           address: data?.sender.address || faker.location.streetAddress(),
-          zipcode: data?.sender.zipcode || faker.location.zipCode('####'),
+          zipcode: data?.sender.zipcode || faker.location.zipCode("####"),
           city: data?.sender.city || faker.location.city(),
           vat: data?.sender.vat || faker.finance.accountNumber(8),
           email: data?.sender.email || faker.internet.email(),
@@ -52,12 +52,13 @@ export const dxFactory = {
           bankAccountNumber:
             data?.invoice.bankAccountNumber || faker.finance.accountNumber(8),
           bankRegistrationNumber:
-            data?.invoice.bankRegistrationNumber || faker.finance.accountNumber(4),
+            data?.invoice.bankRegistrationNumber ||
+            faker.finance.accountNumber(4),
           number: data?.invoice.number || faker.string.alphanumeric(6),
-          date: data?.invoice.date || new Date().toISOString().split('T')[0],
+          date: data?.invoice.date || new Date().toISOString().split("T")[0],
           due:
             data?.invoice.due ||
-            faker.date.soon({ days: 8 }).toISOString().split('T')[0],
+            faker.date.soon({ days: 8 }).toISOString().split("T")[0],
         },
         addTax: data?.addTax || faker.datatype.boolean(),
         lateFee: data?.lateFee || faker.datatype.boolean(),

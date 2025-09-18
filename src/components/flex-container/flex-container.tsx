@@ -1,5 +1,5 @@
-import React from 'react';
-import Divider from '../divider';
+import React from "react";
+import Divider from "../divider";
 
 export const FlexContainer = (props: {
   [x: string]: any;
@@ -8,12 +8,12 @@ export const FlexContainer = (props: {
 }) => {
   const { children, dividers, ...rest } = props;
   return (
-    <div className='flex flex-col gap-8' {...rest}>
+    <div className="flex flex-col gap-8" {...rest}>
       {dividers
         ? children.map((child: React.ReactChild, index: number) => {
             return (
               <React.Fragment key={index}>
-                {index > 0 && <Divider className='my-8' />}
+                {index > 0 && <Divider className="my-8" />}
                 {child}
               </React.Fragment>
             );
