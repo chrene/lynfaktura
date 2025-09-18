@@ -1,18 +1,18 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import classNames from 'classnames';
-import { useFieldArray, useForm } from 'react-hook-form';
-import { InvoiceData } from '../../../types/invoice-data';
-import { getCompanyByVAT } from '../../services/cvr-api';
-import { dxFactory } from '../../services/dx-factory';
-import Button from '../button';
-import { FlexContainer } from '../flex-container';
-import FormInput from '../form-input';
-import FormInputCheckbox from '../form-input-checkbox';
-import { CloseIcon, DownloadIcon } from '../icon';
-import { defaultFormValues } from './default-form-values';
-import { FormGroup } from './form-group';
-import { validationSchema } from './form-validation';
-import { InvoiceSection } from './invoice-section';
+import { yupResolver } from "@hookform/resolvers/yup";
+import classNames from "classnames";
+import { useFieldArray, useForm } from "react-hook-form";
+import { InvoiceData } from "../../../types/invoice-data";
+import { getCompanyByVAT } from "../../services/cvr-api";
+import { dxFactory } from "../../services/dx-factory";
+import Button from "../button";
+import { FlexContainer } from "../flex-container";
+import FormInput from "../form-input";
+import FormInputCheckbox from "../form-input-checkbox";
+import { CloseIcon, DownloadIcon } from "../icon";
+import { defaultFormValues } from "./default-form-values";
+import { FormGroup } from "./form-group";
+import { validationSchema } from "./form-validation";
+import { InvoiceSection } from "./invoice-section";
 
 interface CreateInvoiceFormProps {
   dx?: { enabled: boolean };
@@ -31,25 +31,25 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
   } = useForm({
     defaultValues: defaultFormValues,
     resolver,
-    mode: 'onBlur',
+    mode: "onBlur",
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'lines',
+    name: "lines",
   });
-  const watchIsCompany = watch('receiver.isCompany');
+  const watchIsCompany = watch("receiver.isCompany");
   const handleDownloadInvoicePDF = async (data: InvoiceData) => {
     // make a post request to download PDF and save as file from /api/invoices
-    const response = await fetch('/api/invoices', {
-      method: 'POST',
+    const response = await fetch("/api/invoices", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(data),
     }).then((res) => res.blob());
 
-    var a = document.createElement('a');
+    var a = document.createElement("a");
     a.href = window.URL.createObjectURL(response);
     a.download = `${data.invoice.number}`;
     a.click();
@@ -64,7 +64,9 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
       sender: {
         ...getValues().sender,
         name: result.name,
-        address: `${result.address} ${result.addressco ? `c/o ${result.addressco} ` : ''}`.trim(),
+        address: `${result.address} ${
+          result.addressco ? `c/o ${result.addressco} ` : ""
+        }`.trim(),
         zipcode: result.zipcode,
         city: result.city,
         phone: result.phone,
@@ -105,7 +107,8 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
           Udfyld test data
         </button>
       )}
-      <div className="bg-base-100 rounded-xl mt-8 lg:mt-16 lg:mx-auto py-8 p-5 lg:p-16 lg:max-w-5xl relative overflow-x-hidden">
+
+      <div className="shadow-2xl shadow-black/15 bg-base-100 mx-auto rounded-2xl mt-8 lg:mt-16 lg:mx-auto py-8 p-5 lg:p-16 lg:max-w-5xl relative">
         <FlexContainer dividers>
           <InvoiceSection title="Fakturalinjer">
             <ul className="gap-4 flex flex-col relative">
@@ -166,7 +169,9 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
             <div className="w-fit self-center">
               <Button
                 ghost
-                onClick={() => append({ description: '', quantity: null, price: null })}
+                onClick={() =>
+                  append({ description: "", quantity: null, price: null })
+                }
               >
                 Tilføj ny linje
               </Button>
@@ -183,7 +188,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   label="CVR"
                   errors={errors}
                   register={{
-                    ...register('sender.vat', {
+                    ...register("sender.vat", {
                       required: true,
                       minLength: 8,
                     }),
@@ -219,14 +224,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   placeholder="Navn"
                   label="Navn"
                   errors={errors}
-                  register={{ ...register('sender.name') }}
+                  register={{ ...register("sender.name") }}
                 />
                 <FormInput
                   className="col-span-12 lg:col-span-6"
                   placeholder="Adresse"
                   label="Adresse"
                   errors={errors}
-                  register={{ ...register('sender.address') }}
+                  register={{ ...register("sender.address") }}
                 />
               </FormGroup>
               <FormGroup cols>
@@ -235,14 +240,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   placeholder="Postnummer"
                   label="Postnummer"
                   errors={errors}
-                  register={{ ...register('sender.zipcode') }}
+                  register={{ ...register("sender.zipcode") }}
                 />
                 <FormInput
                   className="col-span-12 lg:col-span-6"
                   placeholder="By"
                   label="By"
                   errors={errors}
-                  register={{ ...register('sender.city') }}
+                  register={{ ...register("sender.city") }}
                 />
               </FormGroup>
               <FormGroup cols>
@@ -251,7 +256,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   placeholder="Email"
                   label="Email"
                   errors={errors}
-                  register={{ ...register('sender.email') }}
+                  register={{ ...register("sender.email") }}
                 />
                 <FormInput
                   className="col-span-12 lg:col-span-6"
@@ -259,7 +264,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   label="Telefon"
                   errors={errors}
                   register={{
-                    ...register('sender.phone', {
+                    ...register("sender.phone", {
                       required: false,
                     }),
                   }}
@@ -273,7 +278,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
             <FormGroup cols>
               <FormInputCheckbox
                 label="Modtager er en virksomhed"
-                register={{ ...register('receiver.isCompany') }}
+                register={{ ...register("receiver.isCompany") }}
               />
             </FormGroup>
             {watchIsCompany ? (
@@ -283,7 +288,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   placeholder="CVR"
                   label="CVR"
                   errors={errors}
-                  register={{ ...register('receiver.vat') }}
+                  register={{ ...register("receiver.vat") }}
                 />
                 <Button
                   primary
@@ -315,14 +320,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   placeholder="Navn"
                   label="Navn"
                   errors={errors}
-                  register={{ ...register('receiver.name') }}
+                  register={{ ...register("receiver.name") }}
                 />
                 <FormInput
                   className="col-span-12 lg:col-span-6"
                   placeholder="Adresse"
                   label="Adresse"
                   errors={errors}
-                  register={{ ...register('receiver.address') }}
+                  register={{ ...register("receiver.address") }}
                 />
               </FormGroup>
               <FormGroup cols>
@@ -331,14 +336,14 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                   placeholder="Postnr."
                   label="Postnr."
                   errors={errors}
-                  register={{ ...register('receiver.zipcode') }}
+                  register={{ ...register("receiver.zipcode") }}
                 />
                 <FormInput
                   className="col-span-8 lg:col-span-6"
                   placeholder="By"
                   label="By"
                   errors={errors}
-                  register={{ ...register('receiver.city') }}
+                  register={{ ...register("receiver.city") }}
                 />
               </FormGroup>
             </FlexContainer>
@@ -352,7 +357,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 placeholder="Fakturanummer"
                 label="Fakturanummer"
                 errors={errors}
-                register={{ ...register('invoice.number') }}
+                register={{ ...register("invoice.number") }}
               />
               <FormInput
                 className="col-span-6 lg:col-span-4"
@@ -360,7 +365,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 placeholder="Fakturadato"
                 label="Fakturadato"
                 errors={errors}
-                register={{ ...register('invoice.date') }}
+                register={{ ...register("invoice.date") }}
               />
               <FormInput
                 className="col-span-6 lg:col-span-4"
@@ -368,7 +373,7 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 placeholder="Betalingsdato"
                 label="Betalingsdato"
                 errors={errors}
-                register={{ ...register('invoice.due') }}
+                register={{ ...register("invoice.due") }}
               />
             </FormGroup>
             <FormGroup cols>
@@ -377,22 +382,28 @@ export const CreateInvoiceForm = ({ dx }: CreateInvoiceFormProps) => {
                 placeholder="1234"
                 label="Bank registreringsnummer"
                 errors={errors}
-                register={{ ...register('invoice.bankRegistrationNumber') }}
+                register={{ ...register("invoice.bankRegistrationNumber") }}
               />
               <FormInput
                 className="col-span-12 lg:col-span-8"
                 placeholder="12345678"
                 label="Bank kontonummer"
                 errors={errors}
-                register={{ ...register('invoice.bankAccountNumber') }}
+                register={{ ...register("invoice.bankAccountNumber") }}
               />
             </FormGroup>
 
             <FormGroup cols>
-              <FormInputCheckbox label="Sen betalingsgebyr" register={{ ...register('lateFee') }} />
+              <FormInputCheckbox
+                label="Sen betalingsgebyr"
+                register={{ ...register("lateFee") }}
+              />
             </FormGroup>
             <FormGroup cols>
-              <FormInputCheckbox label="Tilføj moms" register={{ ...register('addTax') }} />
+              <FormInputCheckbox
+                label="Tilføj moms"
+                register={{ ...register("addTax") }}
+              />
             </FormGroup>
           </InvoiceSection>
           {/* Download */}
