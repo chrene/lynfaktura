@@ -4,7 +4,7 @@
 
 PDFFaktura.dk is a modern, user-friendly web application that enables Danish businesses and freelancers to create professional invoice PDFs quickly and easily online. Built with Next.js, TypeScript, and DaisyUI.
 
-![PDFFaktura Screenshot](public/pdffaktura-logo.png)
+<img src="public/pdffaktura-logo.png" alt="PDFFaktura Screenshot" width="25%" />
 
 ## ✨ Features
 
