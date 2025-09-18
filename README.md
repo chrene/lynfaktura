@@ -32,29 +32,33 @@ Lynfaktura.dk is a modern, user-friendly web application that enables Danish bus
 
 ### Prerequisites
 
-- Node.js 16+ 
+- Node.js 16+
 - pnpm (recommended) or npm/yarn
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/chrene/lynfaktura.git
    cd lynfaktura
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.local.example .env.local
    # Edit .env.local with your configuration
    ```
 
 4. **Start development server**
+
    ```bash
    pnpm dev
    ```
@@ -175,6 +179,7 @@ This project is private and proprietary.
 ## 👨‍💻 Author
 
 **Christian René Nedergaard**
+
 - Website: [lynfaktura.dk](https://lynfaktura.dk)
 - GitHub: [@chrene](https://github.com/chrene)
 
