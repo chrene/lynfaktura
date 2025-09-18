@@ -1,10 +1,8 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {
-
-    },
+    extend: {},
     fontFamily: {
       'sans': ['Montserrat', 'system-ui'],
       'serif': ['ui-serif', 'Georgia'],
@@ -33,5 +31,8 @@ module.exports = {
         },
       },
     ],
+    styled: true,
+    base: true,
+    utils: true,
   },
 };
