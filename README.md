@@ -178,7 +178,7 @@ This project is private and proprietary.
 
 ## 👨‍💻 Author
 
-**Christian René Nedergaard**
+**Christian Enevoldsen**
 
 - Website: [lynfaktura.dk](https://lynfaktura.dk)
 - GitHub: [@chrene](https://github.com/chrene)
